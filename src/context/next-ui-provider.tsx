@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import * as React from "react";
 import { NextUIProvider } from "@nextui-org/react";
 
 export const NextUiProvider: React.FC<React.PropsWithChildren> = ({

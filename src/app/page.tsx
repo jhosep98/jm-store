@@ -1,13 +1,13 @@
-"use client";
-
-import { Button } from "@nextui-org/react";
+import { HomeHero } from "@/ui";
 
 export default function Home() {
   return (
-    <div className="text-2xl">
-      Hi Mom!
+   <>
+    <HomeHero />
 
-      <Button>Button</Button>
-    </div>
+    <main>
+      MAIN CONTENT
+    </main> 
+   </> 
   );
 }
