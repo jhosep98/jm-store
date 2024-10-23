@@ -16,7 +16,17 @@ export const content = [
 export const darkMode = "class";
 
 export const theme = {
-  extend: {},
+  extend: {
+    keyframes: {
+      "translate-y-loop": {
+        "0%, 100%": { transform: "translateY(0)" },
+        "50%": { transform: "translateY(100%)" },
+      },
+    },
+    animation: {
+      "translate-y-loop": "translate-y-loop 2s infinite",
+    },
+  },
 };
 
 export const plugins = [nextui()];

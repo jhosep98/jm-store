@@ -3,14 +3,13 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Icon } from "@iconify/react";
 import { Button } from "@nextui-org/button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import { DEFAULT_ICONS_NAME } from "@/lib/icons-name";
+import { MiChevronDown } from "@/lib/icons-name";
 
 const IMAGES = [
   "https://picsum.photos/id/10/1920/1080",
@@ -51,21 +50,16 @@ export const HomeHero: React.FC = () => (
                 Explore the latest fashion trends at StyleHub
               </p>
 
-              <Link href="/categories/all">
+              <Link href="#new-releases">
                 <Button
                   radius="full"
                   size="lg"
-                  variant="shadow"
+                  variant="light"
                   color="default"
-                  endContent={
-                    <Icon
-                      icon={DEFAULT_ICONS_NAME.arrow_right_animated}
-                      width={24}
-                      height={24}
-                    />
-                  }
+                  className="text-white animate-bounce"
+                  isIconOnly
                 >
-                  Explore
+                  <MiChevronDown />
                 </Button>
               </Link>
             </div>

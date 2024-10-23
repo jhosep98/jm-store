@@ -1,3 +1,4 @@
+// import { Container } from "/components";
 import { HomeHero, RowCard } from "@/ui";
 
 export default function Home() {
@@ -5,7 +6,10 @@ export default function Home() {
     <>
       <HomeHero />
 
-      <main className="max-w-screen-lg container mx-auto px-4 py-[75px] my-[75px]">
+      <main
+        id="new-releases"
+        className="max-w-screen-lg container mx-auto px-4 py-[75px] my-[75px]"
+      >
         <h2 className="text-3xl font-bold mb-8 text-center">
           Nuevos Lanzamientos
         </h2>

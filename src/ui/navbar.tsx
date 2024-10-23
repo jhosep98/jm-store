@@ -1,6 +1,6 @@
 "use client";
+
 import * as React from "react";
-import { Icon } from "@iconify/react";
 import { Button } from "@nextui-org/button";
 import {
   Navbar,
@@ -9,7 +9,7 @@ import {
   NavbarItem,
 } from "@nextui-org/navbar";
 
-import { DEFAULT_ICONS_NAME } from "@/lib/icons-name";
+import { MdiCartOutline } from "@/lib/icons-name";
 
 export const MainNavbar: React.FC = () => (
   <Navbar isBordered>
@@ -25,7 +25,7 @@ export const MainNavbar: React.FC = () => (
           aria-label="cart"
           className="rounded-full"
         >
-          <Icon icon={DEFAULT_ICONS_NAME.cart} width={24} height={24} />
+          <MdiCartOutline />
         </Button>
       </NavbarItem>
     </NavbarContent>

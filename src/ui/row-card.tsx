@@ -2,11 +2,11 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Icon } from "@iconify/react";
 import { Button } from "@nextui-org/button";
+import { Skeleton } from "@nextui-org/skeleton";
 import { Card, CardBody, CardFooter } from "@nextui-org/card";
 
-import { DEFAULT_ICONS_NAME } from "@/lib/icons-name";
+import { MdiCartOutline } from "@/lib/icons-name";
 
 const MOCK_DATA = [
   {
@@ -40,29 +40,44 @@ export const RowCard: React.FC = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {MOCK_DATA.map((item) => (
         <Card key={item.id}>
-          <CardBody>
-            <div className="relative min-h-56">
-              <Image
-                alt="Card background"
-                className="object-cover rounded-xl min-h-56"
-                src={item.image}
-                fill
-              />
-
-              <Button
-                isIconOnly
-                className="rounded-full absolute top-2 right-2 text-black"
-                variant="shadow"
-              >
-                <Icon icon={DEFAULT_ICONS_NAME.cart} width={24} height={24} />
-              </Button>
-            </div>
-          </CardBody>
+          {item.image ? (
+            <CardBody>
+              <div className="relative min-h-56">
+                <Image
+                  alt="Card background"
+                  className="object-cover rounded-xl min-h-56"
+                  src={item.image}
+                  fill
+                />
+              </div>
+            </CardBody>
+          ) : (
+            <Skeleton className="rounded-lg">
+              <div className="h-56 rounded-lg bg-default-300"></div>
+            </Skeleton>
+          )}
 
           <CardFooter className="p-4 flex-col items-start">
             <h3 className="text-xl font-bold mb-2">{item.name}</h3>
 
-            <p className="text-lg text-gray-400">{item.price}</p>
+            <div className="flex justify-between items-center w-full">
+              <p className="text-lg text-gray-400">
+                {new Intl.NumberFormat("es-ES", {
+                  style: "currency",
+                  currency: "PEN",
+                  minimumFractionDigits: 2,
+                }).format(item.price)}
+              </p>
+
+              <Button
+                variant="light"
+                color="default"
+                className="rounded-full"
+                isIconOnly
+              >
+                <MdiCartOutline />
+              </Button>
+            </div>
           </CardFooter>
         </Card>
       ))}
