@@ -14,7 +14,7 @@ import { DEFAULT_ICONS_NAME } from "@/lib/icons-name";
 export const MainNavbar: React.FC = () => (
   <Navbar isBordered>
     <NavbarBrand>
-      <p className="font-bold text-inherit">JM Store</p>
+      <p className="font-bold text-xl uppercase text-inherit">JM-Store</p>
     </NavbarBrand>
 
     <NavbarContent justify="end">

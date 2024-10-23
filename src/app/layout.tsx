@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-import { MainNavbar } from "@/ui";
 import { NextUiProvider } from "@/context";
+import { MainFooter, MainNavbar } from "@/ui";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,6 +34,8 @@ export default function RootLayout({
         <NextUiProvider>
           <MainNavbar />
           {children}
+
+          <MainFooter />
         </NextUiProvider>
       </body>
     </html>

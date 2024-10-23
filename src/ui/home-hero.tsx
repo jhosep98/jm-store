@@ -1,5 +1,77 @@
-import * as React from "react";
+"use client";
 
-export const HomeHero: React.FC = () => {
-  return <div className="min-h-[60vh] bg-gray-400">HOME-HERO</div>;
-};
+import * as React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Icon } from "@iconify/react";
+import { Button } from "@nextui-org/button";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import { DEFAULT_ICONS_NAME } from "@/lib/icons-name";
+
+const IMAGES = [
+  "https://picsum.photos/id/10/1920/1080",
+  "https://picsum.photos/id/20/1920/1080",
+  "https://picsum.photos/id/30/1920/1080",
+];
+
+export const HomeHero: React.FC = () => (
+  <Swiper
+    pagination={{
+      clickable: true,
+    }}
+    modules={[Pagination, Autoplay]}
+    className="mySwiper"
+    loop
+    autoplay={{
+      delay: 3500,
+      disableOnInteraction: false,
+    }}
+  >
+    {IMAGES.map((img) => (
+      <SwiperSlide key={img}>
+        <div className="relative bg-gray-900 text-white min-h-[calc(100vh-65px)]">
+          <Image
+            src={img}
+            alt="Fashion Hero"
+            className="w-full object-cover object-center "
+            fill
+            priority
+          />
+
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div className="text-center">
+              <h1 className="text-4xl md:text-6xl font-bold mb-4">
+                Discover Your Style
+              </h1>
+              <p className="text-xl md:text-2xl mb-8">
+                Explore the latest fashion trends at StyleHub
+              </p>
+
+              <Link href="/categories/all">
+                <Button
+                  radius="full"
+                  size="lg"
+                  variant="shadow"
+                  color="default"
+                  endContent={
+                    <Icon
+                      icon={DEFAULT_ICONS_NAME.arrow_right_animated}
+                      width={24}
+                      height={24}
+                    />
+                  }
+                >
+                  Explore
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </SwiperSlide>
+    ))}
+  </Swiper>
+);
