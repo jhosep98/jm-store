@@ -15,8 +15,9 @@ const HomeHero = async () => {
   return (
     <SwiperHero images={images}>
       <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">{title}</h1>
+        <div className="flex flex-col items-center justify-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-center">{title}</h1>
+
           <div className="[&>p>strong]:font-bold text-xl md:text-2xl mb-8">
             <BlocksRenderer content={description} />
           </div>
