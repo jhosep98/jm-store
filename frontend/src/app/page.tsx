@@ -1,10 +1,11 @@
-// import { Container } from "/components";
 import { HomeHero, RowCard } from "@/ui";
 
 export default function Home() {
   return (
     <>
-      <HomeHero />
+      <div className="max-w-screen-lg container mx-auto px-4 pt-[1.5rem]">
+        <HomeHero />
+      </div>
 
       <main
         id="new-releases"

@@ -32,7 +32,7 @@ export const HomeHero: React.FC = () => (
   >
     {IMAGES.map((img) => (
       <SwiperSlide key={img}>
-        <div className="relative bg-gray-900 text-white min-h-[calc(100vh-65px)]">
+        <div className="relative bg-gray-900 text-white min-h-[60svh]">
           <Image
             src={img}
             alt="Fashion Hero"

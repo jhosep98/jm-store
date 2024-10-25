@@ -4,7 +4,8 @@
   "info": {
     "singularName": "home",
     "pluralName": "homes",
-    "displayName": "Home"
+    "displayName": "Home",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -35,18 +36,26 @@
       "required": true
     },
     "cover": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
       "allowedTypes": [
         "images",
         "files"
       ],
-      "type": "media",
-      "multiple": true,
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
+      }
+    },
+    "firstSubtitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
       },
-      "required": true
+      "type": "string"
     }
   }
 }
