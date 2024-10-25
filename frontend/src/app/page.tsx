@@ -1,6 +1,7 @@
-import { HomeHero, RowCard } from "@/ui";
+import { RowCard } from "@/ui";
+import HomeHero from "@/ui/home-hero";
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <div className="max-w-screen-lg container mx-auto px-4 pt-[1.5rem]">
