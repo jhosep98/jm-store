@@ -1,4 +1,4 @@
-import { query } from "./strapi";
+import { query } from "../lib/strapi";
 
 const { STRAPI_HOST } = process.env;
 

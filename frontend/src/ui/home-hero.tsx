@@ -6,7 +6,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import "swiper/css";
 import "swiper/css/pagination";
 import { MiChevronDown } from "@/lib/icons-name";
-import { getHomeInfo } from "@/lib/get-home-info";
+import { getHomeInfo } from "@/providers/get-home-info";
 import { SwiperHero } from "@/components/swiper-hero";
 
 const HomeHero = async () => {

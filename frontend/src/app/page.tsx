@@ -1,8 +1,8 @@
-import { getHomeInfo } from "@/lib/get-home-info";
 import { RowCard } from "@/ui";
 import HomeHero from "@/ui/home-hero";
+import { getHomeInfo } from "@/providers";
 
-export default async function Home() {
+export default async function HomePage() {
   const { firstSubtitle } = await getHomeInfo();
 
   return (
