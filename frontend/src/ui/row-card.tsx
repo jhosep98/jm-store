@@ -41,8 +41,8 @@ export const RowCard: React.FC = () => (
   <section>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {MOCK_DATA.map((item) => (
-        <Link href={`/${item.category}/${parseTitleToURL(item.name)}`}>
-          <Card key={item.id}>
+        <Link href={`/${item.category}/${parseTitleToURL(item.name)}`}  key={item.id}>
+          <Card>
             {item.image ? (
               <CardBody>
                 <div className="relative min-h-56">

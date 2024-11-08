@@ -2,45 +2,42 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 interface SwiperProductModel {
-  image: string;
-  name: string;
+  images: Array<{ image: string; name: string }>;
 }
 
-export const SwiperProduct: React.FC<SwiperProductModel> = (product) => (
+export const SwiperProduct: React.FC<SwiperProductModel> = ({ images }) => (
   <div className="relative min-h-[420px] w-full col-span-2">
     <Swiper
+      pagination={{
+        clickable: true,
+      }}
       className="mySwiper"
       spaceBetween={30}
       slidesPerView={1}
       navigation
-      modules={[Navigation]}
+      modules={[Navigation, Pagination, Autoplay]}
     >
-      <SwiperSlide>
-        <Image
-          src={product.image}
-          alt={product.name}
-          className="w-full rounded-lg shadow-lg"
-          width={600}
-          height={420}
-        />
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <Image
-          src={product.image}
-          alt={product.name}
-          className="w-full rounded-lg shadow-lg"
-          width={600}
-          height={420}
-        />
-      </SwiperSlide>
+      {images.map((img) => (
+        <SwiperSlide key={img.name}>
+          <Image
+            src={img.image}
+            alt={img.name}
+            className="w-full rounded-lg shadow-lg h-[520px]"
+            width={600}
+            height={620}
+            priority
+            objectFit="cover"
+          />
+        </SwiperSlide>
+      ))}
     </Swiper>
   </div>
 );
