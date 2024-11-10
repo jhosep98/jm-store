@@ -13,7 +13,9 @@ export default async function RowCard() {
     <section>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {products.map(({ id, productName, price, images, category, slug }) => {
-          const photos = images.map((img: any) => `${STRAPI_HOST}/${img.url}`);
+          const photos = images.map(
+            (img: { url: string }) => `${STRAPI_HOST}/${img.url}`
+          );
 
           return (
             <ProductCard
@@ -23,6 +25,7 @@ export default async function RowCard() {
               image={photos[2]}
               category={category.slug}
               slug={slug}
+              key={id}
             />
           );
         })}

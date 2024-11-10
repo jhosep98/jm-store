@@ -3,12 +3,12 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@nextui-org/button";
+// import { Button } from "@nextui-org/button";
 import { Skeleton } from "@nextui-org/skeleton";
 import { Card, CardBody, CardFooter } from "@nextui-org/card";
 
-import { MdiCartOutline } from "@/lib/icons-name";
-import { parseTitleToURL } from "@/lib/parse-title-to-url";
+// import { MdiCartOutline } from "@/lib/icons-name";
+// import { parseTitleToURL } from "@/lib/parse-title-to-url";
 
 interface ProductCardModel {
   id: number;
