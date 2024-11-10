@@ -19,16 +19,18 @@ export const MainNavbar: React.FC = () => (
     </Link>
 
     <NavbarContent justify="end">
-      <NavbarItem>
-        <Button
-          isIconOnly
-          variant="light"
-          aria-label="cart"
-          className="rounded-full"
-        >
-          <MdiCartOutline />
-        </Button>
-      </NavbarItem>
+      <Link href="/cart">
+        <NavbarItem>
+          <Button
+            isIconOnly
+            variant="light"
+            aria-label="cart"
+            className="rounded-full"
+          >
+            <MdiCartOutline />
+          </Button>
+        </NavbarItem>
+      </Link>
     </NavbarContent>
   </Navbar>
 );

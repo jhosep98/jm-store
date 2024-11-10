@@ -68,3 +68,142 @@ export function MdiInstagram(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function LineMdEmojiFrown(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+      >
+        <path
+          strokeDasharray={64}
+          strokeDashoffset={64}
+          d="M12 3c4.97 0 9 4.03 9 9c0 4.97 -4.03 9 -9 9c-4.97 0 -9 -4.03 -9 -9c0 -4.97 4.03 -9 9 -9"
+        >
+          <animate
+            fill="freeze"
+            attributeName="stroke-dashoffset"
+            dur="0.6s"
+            values="64;0"
+          ></animate>
+        </path>
+        <path strokeDasharray={2} strokeDashoffset={2} d="M9 9v1">
+          <animate
+            fill="freeze"
+            attributeName="stroke-dashoffset"
+            begin="0.7s"
+            dur="0.2s"
+            values="2;0"
+          ></animate>
+        </path>
+        <path strokeDasharray={2} strokeDashoffset={2} d="M15 9v1">
+          <animate
+            fill="freeze"
+            attributeName="stroke-dashoffset"
+            begin="0.9s"
+            dur="0.2s"
+            values="2;0"
+          ></animate>
+        </path>
+        <path
+          strokeDasharray={12}
+          strokeDashoffset={12}
+          d="M8 16c0.5 -1 1.79 -2 4 -2c2.21 0 3.5 1 4 2"
+        >
+          <animate
+            fill="freeze"
+            attributeName="stroke-dashoffset"
+            begin="1.1s"
+            dur="0.2s"
+            values="12;0"
+          ></animate>
+        </path>
+      </g>
+    </svg>
+  );
+}
+
+export function MaterialSymbolsDeleteOutline(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zM17 6H7v13h10zM9 17h2V8H9zm4 0h2V8h-2zM7 6v13z"
+      ></path>
+    </svg>
+  );
+}
+
+export function SiWalletLine(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={1.5}
+        d="M21 9V6.4c0-1.325-.88-2.4-1.964-2.4H2.964C1.879 4 1 5.075 1 6.4v11.2c0 1.325.88 2.4 1.964 2.4h16.072C20.121 20 21 18.925 21 17.6V15m-1-3h.01M16.6 9h4.8a1.6 1.6 0 0 1 1.6 1.6v2.8a1.6 1.6 0 0 1-1.6 1.6h-4.8a1.6 1.6 0 0 1-1.6-1.6v-2.8A1.6 1.6 0 0 1 16.6 9"
+      ></path>
+    </svg>
+  );
+}
+
+export function LetsIconsAddRound(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeWidth={2}
+        d="M12 6v12m6-6H6"
+      ></path>
+    </svg>
+  );
+}
+
+export function FluentSubtract12Regular(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 12 12"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M2 6a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 2 6"
+      ></path>
+    </svg>
+  );
+}
