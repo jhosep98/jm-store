@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import {
   Table,
@@ -35,9 +36,11 @@ export const ProductsTable: React.FC = () => {
           </Button>
 
           <Button
+            as={Link}
             variant="flat"
             color="primary"
             endContent={<SiWalletLine fontSize={20} />}
+            href="/checkout"
           >
             Ir a pagar
           </Button>
@@ -78,7 +81,7 @@ export const ProductsTable: React.FC = () => {
             </TableCell>
             <TableCell>$20</TableCell>
           </TableRow>
-           <TableRow key="2">
+          <TableRow key="2">
             <TableCell>Tony Reichert</TableCell>
             <TableCell>
               <div className="relative flex items-center gap-2">

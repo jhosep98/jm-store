@@ -1,19 +1,19 @@
 import * as React from "react";
 import type { Metadata } from "next";
 
-import { ProductsTable } from "@/ui";
-import { EmptyCart } from "@/components";
+import { CheckoutForm } from "@/ui";
 
 export const metadata: Metadata = {
-  title: "Cart",
-  description: "Cart",
+  title: "Checkout",
+  description: "Checkout",
 };
 
-export default function CartPage() {
+export default function CheckoutPage() {
   return (
     <main className="max-w-screen-lg container mx-auto px-4 py-[75px] my-[75px]">
-      {/* <EmptyCart /> */}
-      <ProductsTable />
+      <h2 className="text-3xl font-bold mb-8 text-center">Checkout</h2>
+
+      <CheckoutForm />
     </main>
   );
 }

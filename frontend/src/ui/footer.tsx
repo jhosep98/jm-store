@@ -33,11 +33,11 @@ export const MainFooter: React.FC = () => (
       <div className="pt-10 pb-6">
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm">
-            {new Date().getFullYear()} &copy; All rights reserved. &#129505; by{" "}
+            {new Date().getFullYear()} &copy; All rights reserved. By{" "}
             <a
               href="https://www.jmdevstudio.com"
               target="_blank"
-              className="text-muted-foreground underline hover:text-foreground"
+              className="text-muted-foreground underline hover:text-foreground font-bold"
             >
               jmdevstudio
             </a>
