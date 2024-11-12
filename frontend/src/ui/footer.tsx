@@ -37,9 +37,9 @@ export const MainFooter: React.FC = () => (
             <a
               href="https://www.jmdevstudio.com"
               target="_blank"
-              className="text-muted-foreground underline hover:text-foreground font-bold"
+              className="text-muted-foreground underline font-bold text-primary"
             >
-              jmdevstudio
+              JMDevStudio
             </a>
             .
           </p>
