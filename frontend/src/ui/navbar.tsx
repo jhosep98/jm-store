@@ -1,14 +1,8 @@
 import * as React from "react";
 import Link from "next/link";
-import { Button } from "@nextui-org/button";
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-} from "@nextui-org/navbar";
+import { Navbar, NavbarBrand, NavbarContent } from "@nextui-org/navbar";
 
-import { MdiCartOutline } from "@/lib/icons-name";
+import { Cart } from "@/components";
 
 export const MainNavbar: React.FC = () => (
   <Navbar isBordered maxWidth="lg" className="[&>header]:px-4">
@@ -19,18 +13,7 @@ export const MainNavbar: React.FC = () => (
     </Link>
 
     <NavbarContent justify="end">
-      <Link href="/cart">
-        <NavbarItem>
-          <Button
-            isIconOnly
-            variant="light"
-            aria-label="cart"
-            className="rounded-full"
-          >
-            <MdiCartOutline />
-          </Button>
-        </NavbarItem>
-      </Link>
+      <Cart />
     </NavbarContent>
   </Navbar>
 );

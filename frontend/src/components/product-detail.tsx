@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Button } from "@nextui-org/button";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 import { findOneProductQuery } from "@/providers";
+import { AddProductButton } from "./add-product-button";
 
 export const ProductDetail: React.FC = async () => {
   const product = await findOneProductQuery("n6axqeu9u6u7a3z1s0cnx10g");
@@ -17,9 +17,7 @@ export const ProductDetail: React.FC = async () => {
         <BlocksRenderer content={product?.description ?? []} />
       </div>
 
-      <Button variant="solid" color="primary">
-        Add to Cart
-      </Button>
+      <AddProductButton product={product} />
     </div>
   );
 };
