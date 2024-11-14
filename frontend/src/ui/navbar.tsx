@@ -13,7 +13,9 @@ export const MainNavbar: React.FC = () => (
     </Link>
 
     <NavbarContent justify="end">
-      <Cart />
+      {/* <Link href="/cart"> */}
+        <Cart />
+      {/* </Link> */}
     </NavbarContent>
   </Navbar>
 );

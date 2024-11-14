@@ -1,1 +1,1 @@
-export * from "./next-ui-provider";
+export * from "./counter-store-provider";

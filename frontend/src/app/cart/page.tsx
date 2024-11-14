@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Cart",
 };
 
-export default function CartPage() {
+export default async function CartPage() {
   return (
     <main className="max-w-screen-lg container mx-auto px-4 py-[75px] my-[75px]">
       {/* <EmptyCart /> */}
