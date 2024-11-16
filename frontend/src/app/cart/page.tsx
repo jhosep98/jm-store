@@ -1,8 +1,7 @@
 import * as React from "react";
 import type { Metadata } from "next";
 
-import { ProductsTable } from "@/ui";
-// import { EmptyCart } from "@/components";
+import { CartContainer } from "@/ui";
 
 export const metadata: Metadata = {
   title: "Cart",
@@ -12,9 +11,7 @@ export const metadata: Metadata = {
 export default async function CartPage() {
   return (
     <main className="max-w-screen-lg container mx-auto px-4 py-[75px] my-[75px]">
-      {/* <EmptyCart /> */}
-
-      <ProductsTable />
+      <CartContainer />
     </main>
   );
 }

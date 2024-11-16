@@ -1,3 +1,4 @@
+export * from "./cart-container";
 export * from "./checkout-form";
 export * from "./details-table";
 export * from "./footer";

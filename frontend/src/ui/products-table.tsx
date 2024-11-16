@@ -12,14 +12,41 @@ import {
   TableCell,
 } from "@nextui-org/table";
 
-import {
-  FluentSubtract12Regular,
-  LetsIconsAddRound,
-  MaterialSymbolsDeleteOutline,
-  SiWalletLine,
-} from "@/lib/icons-name";
+import { useCartStore } from "@/context";
+import { MaterialSymbolsDeleteOutline, SiWalletLine } from "@/lib/icons-name";
 
 export const ProductsTable: React.FC = () => {
+  const { cart, clearCart, addToCart, removeFromCart } = useCartStore(
+    (state) => state
+  );
+
+  const handleClearCart = () => {
+    clearCart();
+  };
+
+  const removeRepeatedProducts = React.useCallback((products: any[]) => {
+    const countProduct = (id: string) => {
+      return products.filter((product) => product.id === id).length;
+    };
+
+    const uniqueProducts = [...new Set(products.map((product) => product.id))];
+
+    return uniqueProducts.map((id) => {
+      const count = countProduct(id);
+
+      return {
+        ...products.find((product) => product.id === id),
+        quantity: count,
+      };
+    });
+  }, []);
+
+  const uniqueProducts = removeRepeatedProducts(cart);
+
+  const totalPrice = uniqueProducts.reduce((acc, item) => {
+    return acc + item.price;
+  }, 0);
+
   return (
     <div>
       <div className="flex justify-between p-4">
@@ -31,6 +58,7 @@ export const ProductsTable: React.FC = () => {
             color="danger"
             className="mr-2"
             endContent={<MaterialSymbolsDeleteOutline fontSize={20} />}
+            onClick={handleClearCart}
           >
             Limpiar carrito
           </Button>
@@ -54,64 +82,43 @@ export const ProductsTable: React.FC = () => {
           <TableColumn>Precio</TableColumn>
         </TableHeader>
         <TableBody>
-          <TableRow key="1">
-            <TableCell>Tony Reichert</TableCell>
-            <TableCell>
-              <div className="relative flex items-center gap-2">
-                <Button
-                  isIconOnly
-                  variant="light"
-                  color="default"
-                  size="sm"
-                  className="rounded-full"
-                >
-                  <FluentSubtract12Regular fontSize={16} />
-                </Button>{" "}
-                <span className="text-lg">0</span>
-                <Button
-                  isIconOnly
-                  variant="light"
-                  color="default"
-                  size="sm"
-                  className="rounded-full"
-                >
-                  <LetsIconsAddRound fontSize={16} />
-                </Button>
-              </div>
-            </TableCell>
-            <TableCell>$20</TableCell>
-          </TableRow>
-          <TableRow key="2">
-            <TableCell>Tony Reichert</TableCell>
-            <TableCell>
-              <div className="relative flex items-center gap-2">
-                <Button
-                  isIconOnly
-                  variant="light"
-                  color="default"
-                  size="sm"
-                  className="rounded-full"
-                >
-                  <FluentSubtract12Regular fontSize={16} />
-                </Button>{" "}
-                <span className="text-lg">0</span>
-                <Button
-                  isIconOnly
-                  variant="light"
-                  color="default"
-                  size="sm"
-                  className="rounded-full"
-                >
-                  <LetsIconsAddRound fontSize={16} />
-                </Button>
-              </div>
-            </TableCell>
-            <TableCell>$40</TableCell>
-          </TableRow>
+          {uniqueProducts.map((item) => {
+            console.log(
+              "!!URL: ",
+              `${process.env.NEXT_PUBLIC_STRAPI_HOST}/${item.images[0].url}`
+            );
+
+            return (
+              <TableRow key={item.documentId}>
+                <TableCell>
+                  <Link
+                    href={`/product/${item.id}`}
+                    className="flex items-center gap-2"
+                  >
+                    <img
+                      src={`${process.env.NEXT_PUBLIC_STRAPI_HOST}/${item.images[2].url}`}
+                      alt={item.productName}
+                      className="w-10 h-10 rounded-full"
+                    />
+                    <span>{item.productName}</span>
+                  </Link>
+                </TableCell>
+
+                <TableCell>
+                  <div className="relative flex items-center gap-2">
+                    <span className="text-lg">{item.quantity}</span>
+                  </div>
+                </TableCell>
+
+                <TableCell>${item.price}</TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
+
       <div className="flex justify-end rounded-lg bg-default-100 p-4 mt-4">
-        <p className="text-xl font-bold">Total: $0</p>
+        <p className="text-xl font-bold">Total: ${totalPrice}</p>
       </div>
     </div>
   );

@@ -9,11 +9,13 @@ export const MainFooter: React.FC = () => (
     <div className="max-w-screen-lg container mx-auto px-4 pt-16">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         <div className="lg:col-span-3">
-          <Link href="/" className="flex items-center mb-4">
+          <Link href="/" className="flex items-center mb-2">
             <span className="text-2xl font-bold">JM Store</span>
           </Link>
-          <p className="text-muted-foreground mb-4">
-            Your company description goes here.
+
+          <p className="text-muted-foreground mb-4 text-base max-w-[40ch]">
+            Descubrí productos increíbles y recibilos en la puerta de tu casa.
+            ¡Compra online y disfrutá la comodidad!
           </p>
         </div>
 
