@@ -13,39 +13,16 @@ import {
 } from "@nextui-org/table";
 
 import { useCartStore } from "@/context";
+import { useGetProductDetails } from "@/hooks";
 import { MaterialSymbolsDeleteOutline, SiWalletLine } from "@/lib/icons-name";
 
 export const ProductsTable: React.FC = () => {
-  const { cart, clearCart, addToCart, removeFromCart } = useCartStore(
-    (state) => state
-  );
+  const { clearCart } = useCartStore((state) => state);
+  const { totalPrice, uniqueProducts } = useGetProductDetails();
 
   const handleClearCart = () => {
     clearCart();
   };
-
-  const removeRepeatedProducts = React.useCallback((products: any[]) => {
-    const countProduct = (id: string) => {
-      return products.filter((product) => product.id === id).length;
-    };
-
-    const uniqueProducts = [...new Set(products.map((product) => product.id))];
-
-    return uniqueProducts.map((id) => {
-      const count = countProduct(id);
-
-      return {
-        ...products.find((product) => product.id === id),
-        quantity: count,
-      };
-    });
-  }, []);
-
-  const uniqueProducts = removeRepeatedProducts(cart);
-
-  const totalPrice = uniqueProducts.reduce((acc, item) => {
-    return acc + item.price;
-  }, 0);
 
   return (
     <div>
@@ -83,16 +60,13 @@ export const ProductsTable: React.FC = () => {
         </TableHeader>
         <TableBody>
           {uniqueProducts.map((item) => {
-            console.log(
-              "!!URL: ",
-              `${process.env.NEXT_PUBLIC_STRAPI_HOST}/${item.images[0].url}`
-            );
+            const total = item.quantity * item.price;
 
             return (
               <TableRow key={item.documentId}>
                 <TableCell>
                   <Link
-                    href={`/product/${item.id}`}
+                    href={`/${item.category.slug}/${item.slug}`}
                     className="flex items-center gap-2"
                   >
                     <img
@@ -110,7 +84,7 @@ export const ProductsTable: React.FC = () => {
                   </div>
                 </TableCell>
 
-                <TableCell>${item.price}</TableCell>
+                <TableCell>${total}</TableCell>
               </TableRow>
             );
           })}

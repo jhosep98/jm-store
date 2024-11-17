@@ -5,10 +5,12 @@ import { useForm } from "react-hook-form";
 import { Button } from "@nextui-org/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { useGetProductDetails } from "@/hooks";
 import { BuySuccess, FormField } from "@/components";
 import { CustomerFormData, CustomerScheme } from "@/types/customer-form";
 
 export const CheckoutForm: React.FC = () => {
+  const { totalPrice, uniqueProducts } = useGetProductDetails();
   const {
     control,
     handleSubmit,
@@ -20,8 +22,11 @@ export const CheckoutForm: React.FC = () => {
   });
 
   const onSubmit = async (data: CustomerFormData) => {
-    console.log(data);
-    console.log(errors);
+    console.log("!!FORM_DATA: ", data);
+    console.log("!!PRODUCTS: ", {
+      totalPrice,
+      uniqueProducts,
+    });
   };
 
   const commonProps = {

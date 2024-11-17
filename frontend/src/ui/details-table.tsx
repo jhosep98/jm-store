@@ -10,24 +10,45 @@ import {
   TableCell,
 } from "@nextui-org/table";
 
-export const DetailsTable: React.FC = () => (
-  <Table removeWrapper aria-label="Products List table">
-    <TableHeader>
-      <TableColumn>Producto</TableColumn>
-      <TableColumn>Cantidad</TableColumn>
-      <TableColumn>Precio</TableColumn>
-    </TableHeader>
-    <TableBody>
-      <TableRow key="1">
-        <TableCell>Esferas del dragón</TableCell>
-        <TableCell>1</TableCell>
-        <TableCell>$20</TableCell>
-      </TableRow>
-      <TableRow key="2">
-        <TableCell>Esferas del dragón</TableCell>
-        <TableCell>1</TableCell>
-        <TableCell>$40</TableCell>
-      </TableRow>
-    </TableBody>
-  </Table>
-);
+import { useGetProductDetails } from "@/hooks";
+
+export const DetailsTable: React.FC = () => {
+  const { totalPrice, uniqueProducts } = useGetProductDetails();
+
+  return (
+    <>
+      <Table removeWrapper aria-label="Products List table">
+        <TableHeader>
+          <TableColumn>Producto</TableColumn>
+          <TableColumn>Cantidad</TableColumn>
+          <TableColumn>Precio</TableColumn>
+        </TableHeader>
+        <TableBody>
+          {uniqueProducts.map((item) => {
+            const total = item.quantity * item.price;
+
+            return (
+              <TableRow key={item.documentId}>
+                <TableCell>
+                  <span>{item.productName}</span>
+                </TableCell>
+
+                <TableCell>
+                  <div className="relative flex items-center gap-2">
+                    <span className="text-lg">{item.quantity}</span>
+                  </div>
+                </TableCell>
+
+                <TableCell>${total}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+
+      <div className="flex justify-end rounded-lg bg-default-100 p-2 mt-4">
+        <p className="text-lg font-bold">Total: ${totalPrice}</p>
+      </div>
+    </>
+  );
+};
