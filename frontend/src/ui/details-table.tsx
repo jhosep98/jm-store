@@ -10,13 +10,22 @@ import {
   TableCell,
 } from "@nextui-org/table";
 
+import { useCartStore } from "@/context";
+import { EmptyCart } from "@/components";
 import { useGetProductDetails } from "@/hooks";
 
 export const DetailsTable: React.FC = () => {
+  const { cart } = useCartStore((state) => state);
   const { totalPrice, uniqueProducts } = useGetProductDetails();
+
+  if (cart.length === 0) {
+    return <EmptyCart />;
+  }
 
   return (
     <>
+      <p className="mb-2 font-bold">Detalle de la compra:</p>
+
       <Table removeWrapper aria-label="Products List table">
         <TableHeader>
           <TableColumn>Producto</TableColumn>

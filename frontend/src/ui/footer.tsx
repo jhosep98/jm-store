@@ -1,5 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Divider } from "@nextui-org/divider";
 
 import { MdiFacebook, MdiInstagram } from "@/lib/icons-name";
@@ -10,7 +11,8 @@ export const MainFooter: React.FC = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         <div className="lg:col-span-3">
           <Link href="/" className="flex items-center mb-2">
-            <span className="text-2xl font-bold">JM Store</span>
+            <Image src="/jm-store.svg" alt="JM Store" width={42} height={42} />
+            <span className="ml-2 text-lg font-semibold">JM Store</span>
           </Link>
 
           <p className="text-muted-foreground mb-4 text-base max-w-[40ch]">
@@ -45,6 +47,7 @@ export const MainFooter: React.FC = () => (
             </a>
             .
           </p>
+          
           <div className="flex space-x-2 mt-4 sm:mt-0">
             <Link
               href="#"

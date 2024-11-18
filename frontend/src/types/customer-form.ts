@@ -8,6 +8,7 @@ export const CustomerScheme: ZodType<CustomerFormData> = z.object({
   phone: z.string().min(10, "El teléfono es requerido"),
   address: z.string().min(2, "La dirección es requerida"),
   reference: z.string().min(2, "La referencia es requerida"),
+  totalPurchase: z.number().min(1, "El monto total es requerido"),
 });
 
 export type CustomerFormData = {
@@ -16,6 +17,7 @@ export type CustomerFormData = {
   phone: string;
   address: string;
   reference: string;
+  totalPurchase: number;
 };
 
 export interface CustomerFormFieldProps extends InputProps {
@@ -32,3 +34,11 @@ export type ValidFieldNames =
   | "phone"
   | "address"
   | "reference";
+
+export type PurchaseFormData = {
+  product: string;
+  quantity: number;
+  price: number;
+  totalPrice: number;
+  customerId: string;
+};

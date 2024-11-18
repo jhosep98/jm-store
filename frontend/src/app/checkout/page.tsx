@@ -13,7 +13,7 @@ export default function CheckoutPage() {
     <main className="max-w-screen-lg container mx-auto px-4 my-[75px] pb-[75px]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
         <div className="col-span-1">
-          <p className="mb-2 font-bold">Detalle de la compra:</p>
+          
           <DetailsTable />
         </div>
 

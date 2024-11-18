@@ -105,7 +105,7 @@ export const CheckoutForm: React.FC = () => {
           color="primary"
           type="submit"
           className="mt-8"
-          isDisabled={!isValid}
+          isDisabled={!isValid || uniqueProducts.length === 0}
         >
           Enviar
         </Button>

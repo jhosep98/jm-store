@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "purchases",
+  "info": {
+    "singularName": "purchase",
+    "pluralName": "purchases",
+    "displayName": "purchase"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "product": {
+      "type": "string",
+      "required": true
+    },
+    "quantity": {
+      "required": true,
+      "type": "integer"
+    },
+    "price": {
+      "type": "integer",
+      "required": true
+    },
+    "totalPrice": {
+      "type": "integer",
+      "required": true
+    },
+    "customerId": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::customer.customer"
+    }
+  }
+}
