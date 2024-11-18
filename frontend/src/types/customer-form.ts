@@ -33,6 +33,7 @@ export type ValidFieldNames =
   | "email"
   | "phone"
   | "address"
+  | "totalPurchase"
   | "reference";
 
 export type PurchaseFormData = {
@@ -40,5 +41,5 @@ export type PurchaseFormData = {
   quantity: number;
   price: number;
   totalPrice: number;
-  customerId: string;
+  customerId: any;
 };

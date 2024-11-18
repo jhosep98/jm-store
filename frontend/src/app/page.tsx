@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import RowCard from "@/ui/row-card";
 import HomeHero from "@/ui/home-hero";
-import { useFindHomeInfoQuery } from "@/providers";
+import { findHomeInfoQuery } from "@/providers";
 
 export const metadata: Metadata = {
   title: "JM Store",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const { firstSubtitle } = await useFindHomeInfoQuery();
+  const { firstSubtitle } = await findHomeInfoQuery();
 
   return (
     <>

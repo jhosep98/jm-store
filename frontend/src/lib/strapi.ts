@@ -16,15 +16,22 @@ export async function query(path: string) {
   }
 }
 
-export async function mutation<T>(path: string, dataDto: T) {
+export async function mutation<T>(
+  path: string,
+  dataDto: T,
+  {
+    strapiHost,
+    strapiToken,
+  }: { strapiHost?: string; strapiToken?: string } = {}
+) {
   try {
-    const res = await fetch(`${STRAPI_HOST}/api/${path}`, {
+    const res = await fetch(`${STRAPI_HOST ?? strapiHost}/api/${path}`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${STRAPI_TOKEN}`,
+        Authorization: `Bearer ${STRAPI_TOKEN ?? strapiToken}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(dataDto),
+      body: JSON.stringify({ data: { ...dataDto } }),
     });
 
     const data = await res.json();

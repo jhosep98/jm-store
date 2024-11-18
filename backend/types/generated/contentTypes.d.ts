@@ -402,7 +402,8 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
 export interface ApiCustomerCustomer extends Struct.CollectionTypeSchema {
   collectionName: 'customers';
   info: {
-    displayName: 'customer';
+    description: '';
+    displayName: 'Customer';
     pluralName: 'customers';
     singularName: 'customer';
   };
@@ -565,7 +566,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
 export interface ApiPurchasePurchase extends Struct.CollectionTypeSchema {
   collectionName: 'purchases';
   info: {
-    displayName: 'purchase';
+    description: '';
+    displayName: 'Purchase';
     pluralName: 'purchases';
     singularName: 'purchase';
   };

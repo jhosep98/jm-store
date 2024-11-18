@@ -18,6 +18,9 @@ export const BuySuccess: React.FC = () => (
       <p className="text-center text-xl font-bold mt-6">
         ¡Gracias por tu compra!
       </p>
+      <p className="text-center text-md text-gray-500">
+        Tu compra ha sido registrada con éxito, te contactaremos para completar la orden.
+      </p>
     </div>
 
     <Button

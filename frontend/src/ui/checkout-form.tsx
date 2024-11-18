@@ -5,28 +5,84 @@ import { useForm } from "react-hook-form";
 import { Button } from "@nextui-org/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { useCartStore } from "@/context";
 import { useGetProductDetails } from "@/hooks";
 import { BuySuccess, FormField } from "@/components";
 import { CustomerFormData, CustomerScheme } from "@/types/customer-form";
+import { createCustomerMutation, createPurchaseMutation } from "@/providers";
+
+const strapiHost = process.env.NEXT_PUBLIC_STRAPI_HOST;
+
+const strapiToken = process.env.NEXT_PUBLIC_STRAPI_TOKEN;
 
 export const CheckoutForm: React.FC = () => {
+  const [isSuccess, setIsSuccess] = React.useState(false);
+  const { clearCart } = useCartStore((state) => state);
   const { totalPrice, uniqueProducts } = useGetProductDetails();
+
   const {
     control,
     handleSubmit,
     register,
+    reset,
     formState: { errors, isValid },
   } = useForm<CustomerFormData>({
     resolver: zodResolver(CustomerScheme),
-    defaultValues: {},
+    defaultValues: {
+      address: "",
+      fullName: "",
+      email: "",
+      phone: "",
+      reference: "",
+      totalPurchase: +totalPrice,
+    },
   });
 
   const onSubmit = async (data: CustomerFormData) => {
-    console.log("!!FORM_DATA: ", data);
-    console.log("!!PRODUCTS: ", {
-      totalPrice,
-      uniqueProducts,
-    });
+    try {
+      await createCustomerMutation(
+        {
+          ...data,
+          totalPurchase: totalPrice,
+        },
+        { strapiHost, strapiToken }
+      )
+        .then((customer) => {
+          if (!customer.id) return;
+
+          uniqueProducts.forEach(async (product) => {
+            await createPurchaseMutation(
+              {
+                price: product.price,
+                product: product.productName,
+                quantity: product.quantity,
+                totalPrice: +totalPrice,
+                customerId: {
+                  connect: [
+                    {
+                      id: customer.id,
+                      documentId: customer.documentId,
+                    },
+                  ],
+                },
+              },
+              { strapiHost, strapiToken }
+            );
+          });
+        })
+        .then(() => {
+          clearCart();
+          setIsSuccess(true);
+        })
+        .catch(() => {
+          setIsSuccess(false);
+        })
+        .finally(() => {
+          reset();
+        });
+    } catch (error) {
+      setIsSuccess(false);
+    }
   };
 
   const commonProps = {
@@ -37,11 +93,7 @@ export const CheckoutForm: React.FC = () => {
     required: true,
   } as const;
 
-  const isSuccess = false;
-
-  if (isSuccess) {
-    return <BuySuccess />;
-  }
+  if (isSuccess) return <BuySuccess />;
 
   return (
     <>
@@ -72,7 +124,7 @@ export const CheckoutForm: React.FC = () => {
           <FormField
             type="tel"
             label="Celular"
-            placeholder="+51 987654321"
+            placeholder="987654321"
             labelPlacement="outside"
             name="phone"
             error={errors.phone}
@@ -98,6 +150,18 @@ export const CheckoutForm: React.FC = () => {
             error={errors.reference}
             {...commonProps}
           />
+
+          <FormField
+            type="number"
+            label="Total"
+            placeholder="100"
+            labelPlacement="outside"
+            name="totalPurchase"
+            error={errors.totalPurchase}
+            {...commonProps}
+            required={false}
+            isDisabled={true}
+          />
         </div>
 
         <Button
@@ -105,7 +169,7 @@ export const CheckoutForm: React.FC = () => {
           color="primary"
           type="submit"
           className="mt-8"
-          isDisabled={!isValid || uniqueProducts.length === 0}
+          isDisabled={!isValid || !uniqueProducts.length}
         >
           Enviar
         </Button>

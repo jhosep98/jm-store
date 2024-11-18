@@ -10,15 +10,13 @@ import {
   TableCell,
 } from "@nextui-org/table";
 
-import { useCartStore } from "@/context";
 import { EmptyCart } from "@/components";
 import { useGetProductDetails } from "@/hooks";
 
 export const DetailsTable: React.FC = () => {
-  const { cart } = useCartStore((state) => state);
   const { totalPrice, uniqueProducts } = useGetProductDetails();
 
-  if (cart.length === 0) {
+  if (uniqueProducts.length === 0) {
     return <EmptyCart />;
   }
 

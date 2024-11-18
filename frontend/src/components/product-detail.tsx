@@ -1,11 +1,11 @@
 import * as React from "react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
-import { useFindOneProductQuery } from "@/providers";
+import { findOneProductQuery } from "@/providers";
 import { AddProductButton } from "./add-product-button";
 
 export const ProductDetail: React.FC = async () => {
-  const product = await useFindOneProductQuery("n6axqeu9u6u7a3z1s0cnx10g");
+  const product = await findOneProductQuery("n6axqeu9u6u7a3z1s0cnx10g");
 
   return (
     <div className="col-span-2">

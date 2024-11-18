@@ -4,7 +4,8 @@
   "info": {
     "singularName": "purchase",
     "pluralName": "purchases",
-    "displayName": "purchase"
+    "displayName": "Purchase",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
