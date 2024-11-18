@@ -1,6 +1,6 @@
 import { query } from "@/lib/strapi";
 
-export async function findManyProductsQuery() {
+export async function useFindManyProductsQuery() {
   try {
     const res = await query("products?populate=*");
 

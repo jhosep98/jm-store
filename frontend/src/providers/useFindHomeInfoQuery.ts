@@ -2,7 +2,7 @@ import { query } from "@/lib/strapi";
 
 const { STRAPI_HOST } = process.env;
 
-export async function findHomeInfoQuery() {
+export async function useFindHomeInfoQuery() {
   try {
     const res = await query("home?populate=cover");
 

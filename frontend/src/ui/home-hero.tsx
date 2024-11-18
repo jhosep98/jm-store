@@ -5,12 +5,12 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import { findHomeInfoQuery } from "@/providers";
+import { useFindHomeInfoQuery } from "@/providers";
 import { MiChevronDown } from "@/lib/icons-name";
 import { SwiperHero } from "@/components/swiper-hero";
 
 const HomeHero: React.FC = async () => {
-  const { title, description, images } = await findHomeInfoQuery();
+  const { title, description, images } = await useFindHomeInfoQuery();
 
   return (
     <SwiperHero images={images}>

@@ -2,12 +2,12 @@ import * as React from "react";
 
 import { ProductCard } from "@/components";
 import { ProductModel } from "@/types/product";
-import { findManyProductsQuery } from "@/providers";
+import { useFindManyProductsQuery } from "@/providers";
 
 const { STRAPI_HOST } = process.env;
 
 export default async function RowCard() {
-  const products: Array<ProductModel> = await findManyProductsQuery();
+  const products: Array<ProductModel> = await useFindManyProductsQuery();
 
   return (
     <section>

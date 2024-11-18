@@ -1,7 +1,7 @@
 import * as React from "react";
 import type { Metadata } from "next";
 
-import { findOneProductQuery } from "@/providers";
+import { useFindOneProductQuery } from "@/providers";
 import { ProductDetail, SwiperProduct } from "@/components";
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const { STRAPI_HOST } = process.env;
 
 export default async function ProductIdPage() {
-  const product = await findOneProductQuery("n6axqeu9u6u7a3z1s0cnx10g");
+  const product = await useFindOneProductQuery("n6axqeu9u6u7a3z1s0cnx10g");
 
   return (
     <main className="max-w-screen-lg container mx-auto px-4 py-[25px] my-[25px]">

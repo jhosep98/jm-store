@@ -1,3 +1,3 @@
-export * from "./findHomeInfoQuery";
-export * from "./findManyProductsQuery";
-export * from "./findOneProductQuery";
+export * from "./useFindHomeInfoQuery";
+export * from "./useFindManyProductsQuery";
+export * from "./useFindOneProductQuery";
