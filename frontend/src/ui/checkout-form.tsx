@@ -15,8 +15,15 @@ const strapiHost = process.env.NEXT_PUBLIC_STRAPI_HOST;
 
 const strapiToken = process.env.NEXT_PUBLIC_STRAPI_TOKEN;
 
-export const CheckoutForm: React.FC = () => {
-  const [isSuccess, setIsSuccess] = React.useState(false);
+interface CheckoutFormModel {
+  isSuccess: boolean;
+  setIsSuccess: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const CheckoutForm: React.FC<CheckoutFormModel> = ({
+  isSuccess,
+  setIsSuccess,
+}) => {
   const { clearCart } = useCartStore((state) => state);
   const { totalPrice, uniqueProducts } = useGetProductDetails();
 
@@ -92,8 +99,6 @@ export const CheckoutForm: React.FC = () => {
     size: "lg",
     required: true,
   } as const;
-
-  if (isSuccess) return <BuySuccess />;
 
   return (
     <>
