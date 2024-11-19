@@ -27,7 +27,7 @@ export const ProductsTable: React.FC = () => {
   return (
     <div>
       <div className="flex justify-between p-4">
-        <h2 className="text-3xl font-bold mb-8 text-left">Your products</h2>
+        <h2 className="text-3xl font-bold mb-8 text-left">Tus productos</h2>
 
         <div>
           <Button
@@ -92,7 +92,14 @@ export const ProductsTable: React.FC = () => {
       </Table>
 
       <div className="flex justify-end rounded-lg bg-default-100 p-4 mt-4">
-        <p className="text-xl font-bold">Total: ${totalPrice}</p>
+        <p className="text-xl font-bold">
+          Total:{" "}
+          {new Intl.NumberFormat("es-ES", {
+            style: "currency",
+            currency: "PEN",
+            minimumFractionDigits: 2,
+          }).format(totalPrice)}
+        </p>
       </div>
     </div>
   );

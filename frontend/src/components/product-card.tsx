@@ -22,13 +22,16 @@ interface ProductCardModel {
 export const ProductCard: React.FC<ProductCardModel> = (item) => {
   return (
     <Link href={`${item.category}/${item.slug}`}>
-      <Card shadow="none" className="border-2 border-gray-100 rounded-xl">
+      <Card
+        shadow="none"
+        className="border-none rounded-md bg-gray-50"
+      >
         {item.image ? (
           <CardBody>
             <div className="relative min-h-72">
               <Image
                 alt={item.name}
-                className="object-cover rounded-xl min-h-72"
+                className="object-cover rounded-sm min-h-72"
                 src={item.image}
                 fill
               />
@@ -40,7 +43,7 @@ export const ProductCard: React.FC<ProductCardModel> = (item) => {
           </Skeleton>
         )}
 
-        <CardFooter className="p-4 flex-col items-start">
+        <CardFooter className="p-4 flex-col items-start pt-0">
           <h3 className="text-xl font-bold mb-2">{item.name}</h3>
 
           <div className="flex justify-between items-center w-full">

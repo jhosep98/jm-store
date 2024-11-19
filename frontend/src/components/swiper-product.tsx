@@ -66,17 +66,12 @@ export const SwiperProduct: React.FC<SwiperProductModel> = ({ images }) => {
           navigation
           modules={[Navigation, Pagination, Autoplay]}
         >
-          {images.map((img, index) => (
-            <SwiperSlide
-              key={img.name}
-              onClick={() => {
-                openModal(index);
-              }}
-            >
+          {images.map((img) => (
+            <SwiperSlide key={img.name}>
               <Image
                 src={img.image}
                 alt={img.name}
-                className="w-full object-cover rounded-lg shadow-lg h-[520px]"
+                className="w-full object-top rounded-none shadow-lg h-[540px]"
                 width={600}
                 height={620}
                 priority

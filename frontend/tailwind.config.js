@@ -29,4 +29,14 @@ export const theme = {
   },
 };
 
-export const plugins = [nextui()];
+export const plugins = [
+  nextui({
+    themes: {
+      light: {
+        colors: {
+          divider: "#f6f7fd",
+        },
+      },
+    },
+  }),
+];

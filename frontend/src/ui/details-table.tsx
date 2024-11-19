@@ -54,7 +54,14 @@ export const DetailsTable: React.FC = () => {
       </Table>
 
       <div className="flex justify-end rounded-lg bg-default-100 p-2 mt-4">
-        <p className="text-lg font-bold">Total: ${totalPrice}</p>
+        <p className="text-lg font-bold">
+          Total:{" "}
+          {new Intl.NumberFormat("es-ES", {
+            style: "currency",
+            currency: "PEN",
+            minimumFractionDigits: 2,
+          }).format(totalPrice)}
+        </p>
       </div>
     </>
   );

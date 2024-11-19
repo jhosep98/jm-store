@@ -28,7 +28,7 @@ export const Cart: React.FC = () => {
           aria-label="cart"
           className="rounded-full"
         >
-          <MdiCartOutline />
+          <MdiCartOutline className="text-foreground" />
         </Button>
       </Badge>
     </NavbarItem>
