@@ -19,39 +19,40 @@ interface ProductCardModel {
   slug: string;
 }
 
-export const ProductCard: React.FC<ProductCardModel> = (item) => (
-  <Link href={`/${item.category}/${item.slug}`}>
-    <Card>
-      {item.image ? (
-        <CardBody>
-          <div className="relative min-h-72">
-            <Image
-              alt={item.name}
-              className="object-cover rounded-xl min-h-72"
-              src={item.image}
-              fill
-            />
-          </div>
-        </CardBody>
-      ) : (
-        <Skeleton className="rounded-lg">
-          <div className="h-56 rounded-lg bg-default-300"></div>
-        </Skeleton>
-      )}
+export const ProductCard: React.FC<ProductCardModel> = (item) => {
+  return (
+    <Link href={`${item.category}/${item.slug}`}>
+      <Card shadow="none" className="border-2 border-gray-100 rounded-xl">
+        {item.image ? (
+          <CardBody>
+            <div className="relative min-h-72">
+              <Image
+                alt={item.name}
+                className="object-cover rounded-xl min-h-72"
+                src={item.image}
+                fill
+              />
+            </div>
+          </CardBody>
+        ) : (
+          <Skeleton className="rounded-lg">
+            <div className="h-56 rounded-lg bg-default-300"></div>
+          </Skeleton>
+        )}
 
-      <CardFooter className="p-4 flex-col items-start">
-        <h3 className="text-xl font-bold mb-2">{item.name}</h3>
+        <CardFooter className="p-4 flex-col items-start">
+          <h3 className="text-xl font-bold mb-2">{item.name}</h3>
 
-        <div className="flex justify-between items-center w-full">
-          <p className="text-lg text-gray-400">
-            {new Intl.NumberFormat("es-ES", {
-              style: "currency",
-              currency: "PEN",
-              minimumFractionDigits: 2,
-            }).format(item.price)}
-          </p>
+          <div className="flex justify-between items-center w-full">
+            <p className="text-lg text-gray-400">
+              {new Intl.NumberFormat("es-ES", {
+                style: "currency",
+                currency: "PEN",
+                minimumFractionDigits: 2,
+              }).format(item.price)}
+            </p>
 
-          {/* <Button
+            {/* <Button
             variant="light"
             color="default"
             className="rounded-full"
@@ -59,8 +60,9 @@ export const ProductCard: React.FC<ProductCardModel> = (item) => (
           >
             <MdiCartOutline />
           </Button> */}
-        </div>
-      </CardFooter>
-    </Card>
-  </Link>
-);
+          </div>
+        </CardFooter>
+      </Card>
+    </Link>
+  );
+};

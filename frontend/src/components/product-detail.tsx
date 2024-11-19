@@ -11,13 +11,21 @@ export const ProductDetail: React.FC = async () => {
     <div className="col-span-2">
       <h1 className="text-3xl font-bold mb-4">{product.productName}</h1>
 
-      <p className="text-xl font-semibold mb-4">${product.price.toFixed(2)}</p>
+      <div className="flex flex-col gap-4 items-start mb-6">
+        <p className="text-xl font-semibold">
+          {new Intl.NumberFormat("es-ES", {
+            style: "currency",
+            currency: "PEN",
+            minimumFractionDigits: 2,
+          }).format(product.price)}
+        </p>
+
+        <AddProductButton product={product} />
+      </div>
 
       <div className="[&>p>strong]:font-bold [&>p]:mb-2 [&>ul]:list-disc [&>ul]:mb-2 [&>ul]:pl-8  text-gray-600">
         <BlocksRenderer content={product?.description ?? []} />
       </div>
-
-      <AddProductButton product={product} />
     </div>
   );
 };

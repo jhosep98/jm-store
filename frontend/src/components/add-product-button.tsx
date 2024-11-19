@@ -5,6 +5,7 @@ import { Button } from "@nextui-org/button";
 
 import { useCartStore } from "@/context";
 import { ProductModel } from "@/types/product";
+import { LetsIconsAddRound } from "@/lib/icons-name";
 
 interface AddProductButtonModel {
   product: ProductModel;
@@ -20,8 +21,13 @@ export const AddProductButton: React.FC<AddProductButtonModel> = ({
   };
 
   return (
-    <Button variant="solid" color="primary" onClick={handleAddToCart}>
-      Add to Cart
+    <Button
+      variant="solid"
+      color="primary"
+      onClick={handleAddToCart}
+      endContent={<LetsIconsAddRound fontSize={20} />}
+    >
+      Añadir al carrito
     </Button>
   );
 };

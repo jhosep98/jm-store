@@ -17,7 +17,7 @@ export default async function ProductIdPage() {
 
   return (
     <main className="max-w-screen-lg container mx-auto px-4 py-[25px] my-[25px]">
-      <div className="grid grid-cols-1 md:grid-cols-4 justify-items-center gap-16">
+      <div className="grid grid-cols-1 md:grid-cols-4 justify-items-center gap-8">
         <SwiperProduct
           images={product.images.map((image: { url: string }) => ({
             image: `${STRAPI_HOST}/${image.url}`,
