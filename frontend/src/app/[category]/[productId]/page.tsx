@@ -16,7 +16,7 @@ export default async function ProductIdPage() {
   const product = await findOneProductQuery("n6axqeu9u6u7a3z1s0cnx10g");
 
   return (
-    <main className="max-w-screen-lg container mx-auto px-4 py-[25px] my-[25px]">
+    <main className="max-w-screen-lg container mx-auto px-4 py-[25px] my-[25px] sm:py-[35px] sm:my-[35px]">
       <div className="grid grid-cols-1 md:grid-cols-4 justify-items-center gap-8">
         <SwiperProduct
           images={product.images.map((image: { url: string }) => ({

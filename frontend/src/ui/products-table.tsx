@@ -15,6 +15,7 @@ import {
 import { useCartStore } from "@/context";
 import { useGetProductDetails } from "@/hooks";
 import { MaterialSymbolsDeleteOutline, SiWalletLine } from "@/lib/icons-name";
+import Image from "next/image";
 
 export const ProductsTable: React.FC = () => {
   const { clearCart } = useCartStore((state) => state);
@@ -26,10 +27,10 @@ export const ProductsTable: React.FC = () => {
 
   return (
     <div>
-      <div className="flex justify-between p-4">
+      <div className="flex justify-between gap-4 p-4">
         <h2 className="text-3xl font-bold mb-8 text-left">Tus productos</h2>
 
-        <div>
+        <div className="flex flex-col gap-2 sm:flex-row">
           <Button
             variant="flat"
             color="danger"
@@ -52,12 +53,13 @@ export const ProductsTable: React.FC = () => {
         </div>
       </div>
 
-      <Table removeWrapper aria-label="Products List table">
+      <Table isStriped shadow="none" aria-label="Products List table">
         <TableHeader>
-          <TableColumn>Producto</TableColumn>
-          <TableColumn>Cantidad</TableColumn>
-          <TableColumn>Precio</TableColumn>
+          <TableColumn className="text-sm">Producto</TableColumn>
+          <TableColumn className="text-sm">Cantidad</TableColumn>
+          <TableColumn className="text-sm">Precio</TableColumn>
         </TableHeader>
+
         <TableBody>
           {uniqueProducts.map((item) => {
             const total = item.quantity * item.price;
@@ -69,18 +71,21 @@ export const ProductsTable: React.FC = () => {
                     href={`/${item.category.slug}/${item.slug}`}
                     className="flex items-center gap-2"
                   >
-                    <img
+                    <Image
                       src={`${process.env.NEXT_PUBLIC_STRAPI_HOST}/${item.images[2].url}`}
                       alt={item.productName}
                       className="w-10 h-10 rounded-full"
+                      width={100}
+                      height={100}
                     />
+
                     <span>{item.productName}</span>
                   </Link>
                 </TableCell>
 
                 <TableCell>
                   <div className="relative flex items-center gap-2">
-                    <span className="text-lg">{item.quantity}</span>
+                    <span className="">{item.quantity}</span>
                   </div>
                 </TableCell>
 

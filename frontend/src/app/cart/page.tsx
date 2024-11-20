@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default async function CartPage() {
   return (
-    <main className="max-w-screen-lg container mx-auto px-4 py-[75px] my-[75px]">
+    <main className="max-w-screen-lg container mx-auto px-4 py-[35px] my-[35px] sm:py-[45px] sm:my-[45px]">
       <CartContainer />
     </main>
   );

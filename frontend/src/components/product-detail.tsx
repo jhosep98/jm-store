@@ -9,7 +9,7 @@ export const ProductDetail: React.FC = async () => {
 
   return (
     <div className="col-span-2">
-      <h1 className="text-3xl font-bold mb-4">{product.productName}</h1>
+      <h1 className="text-3xl font-bold">{product.productName}</h1>
 
       <div className="flex flex-col gap-4 items-start mb-6">
         <p className="text-xl font-semibold">

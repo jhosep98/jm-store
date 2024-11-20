@@ -24,12 +24,13 @@ export const DetailsTable: React.FC = () => {
     <>
       <p className="mb-2 font-bold">Detalle de la compra:</p>
 
-      <Table removeWrapper aria-label="Products List table">
+      <Table aria-label="Products List table" className="shadow-none" isStriped shadow="none">
         <TableHeader>
           <TableColumn>Producto</TableColumn>
           <TableColumn>Cantidad</TableColumn>
           <TableColumn>Precio</TableColumn>
         </TableHeader>
+
         <TableBody>
           {uniqueProducts.map((item) => {
             const total = item.quantity * item.price;
