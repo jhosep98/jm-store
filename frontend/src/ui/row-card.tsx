@@ -12,23 +12,26 @@ export default async function RowCard() {
   return (
     <section>
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map(({ id, productName, price, images, category, slug }) => {
-          const photos = images.map(
-            (img: { url: string }) => `${STRAPI_HOST}/${img.url}`
-          );
+        {products.map(
+          ({ id, productName, price, images, category, stock, slug }) => {
+            const photos = images.map(
+              (img: { url: string }) => `${STRAPI_HOST}/${img.url}`
+            );
 
-          return (
-            <ProductCard
-              id={id}
-              name={productName}
-              price={price}
-              image={photos[2]}
-              category={category.slug}
-              slug={slug}
-              key={id}
-            />
-          );
-        })}
+            return (
+              <ProductCard
+                id={id}
+                name={productName}
+                price={price}
+                image={photos[2]}
+                category={category.slug}
+                slug={slug}
+                key={id}
+                stock={stock}
+              />
+            );
+          }
+        )}
       </div>
     </section>
   );

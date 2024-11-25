@@ -6,8 +6,8 @@ import { Button } from "@nextui-org/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useCartStore } from "@/context";
+import { FormField } from "@/components";
 import { useGetProductDetails } from "@/hooks";
-import { BuySuccess, FormField } from "@/components";
 import { CustomerFormData, CustomerScheme } from "@/types/customer-form";
 import { createCustomerMutation, createPurchaseMutation } from "@/providers";
 

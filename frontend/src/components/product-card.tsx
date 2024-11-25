@@ -17,15 +17,13 @@ interface ProductCardModel {
   image: string;
   category: string;
   slug: string;
+  stock: number;
 }
 
 export const ProductCard: React.FC<ProductCardModel> = (item) => {
   return (
     <Link href={`${item.category}/${item.slug}`}>
-      <Card
-        shadow="none"
-        className="border-none rounded-md bg-gray-50"
-      >
+      <Card shadow="none" className="border-none rounded-md bg-gray-50">
         {item.image ? (
           <CardBody>
             <div className="relative min-h-72">
@@ -43,19 +41,30 @@ export const ProductCard: React.FC<ProductCardModel> = (item) => {
           </Skeleton>
         )}
 
-        <CardFooter className="p-4 flex-col items-start pt-0">
-          <h3 className="text-xl font-bold mb-2">{item.name}</h3>
+        <CardFooter className="flex justify-between items-end p-4 pt-0">
+          <div className="flex-col items-start">
+            <h3 className="text-xl font-bold mb-2">{item.name}</h3>
 
-          <div className="flex justify-between items-center w-full">
-            <p className="text-lg text-gray-400">
-              {new Intl.NumberFormat("es-ES", {
-                style: "currency",
-                currency: "PEN",
-                minimumFractionDigits: 2,
-              }).format(item.price)}
-            </p>
+            <div className="flex justify-between items-center w-full">
+              <div className="flex items-center gap-2">
+                <p className="text-lg">
+                  {new Intl.NumberFormat("es-ES", {
+                    style: "currency",
+                    currency: "PEN",
+                    minimumFractionDigits: 2,
+                  }).format(item.price)}
+                </p>
 
-            {/* <Button
+                <span className="line-through text-md text-gray-400">
+                  {new Intl.NumberFormat("es-ES", {
+                    style: "currency",
+                    currency: "PEN",
+                    minimumFractionDigits: 2,
+                  }).format(item.price + 25)}
+                </span>
+              </div>
+
+              {/* <Button
             variant="light"
             color="default"
             className="rounded-full"
@@ -63,6 +72,11 @@ export const ProductCard: React.FC<ProductCardModel> = (item) => {
           >
             <MdiCartOutline />
           </Button> */}
+            </div>
+          </div>
+
+          <div>
+            <p className="text-md font-semibold">{item.stock}/u</p>
           </div>
         </CardFooter>
       </Card>

@@ -20,7 +20,7 @@ const HomeHero: React.FC = async () => {
             {title}
           </h1>
 
-          <div className="[&>p>strong]:font-bold text-xl md:text-2xl mb-8">
+          <div className="[&>p>strong]:font-bold text-xl md:text-2xl mb-8 text-center">
             <BlocksRenderer content={description} />
           </div>
 

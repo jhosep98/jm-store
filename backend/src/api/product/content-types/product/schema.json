@@ -49,6 +49,11 @@
     "description": {
       "type": "blocks",
       "required": true
+    },
+    "stock": {
+      "type": "integer",
+      "required": true,
+      "default": 0
     }
   }
 }

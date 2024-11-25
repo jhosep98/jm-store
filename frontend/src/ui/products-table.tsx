@@ -55,9 +55,9 @@ export const ProductsTable: React.FC = () => {
 
       <Table isStriped shadow="none" aria-label="Products List table">
         <TableHeader>
-          <TableColumn className="text-sm">Producto</TableColumn>
-          <TableColumn className="text-sm">Cantidad</TableColumn>
-          <TableColumn className="text-sm">Precio</TableColumn>
+          <TableColumn className="text-medium">Producto</TableColumn>
+          <TableColumn className="text-medium">Cantidad</TableColumn>
+          <TableColumn className="text-medium">Precio</TableColumn>
         </TableHeader>
 
         <TableBody>
@@ -72,24 +72,32 @@ export const ProductsTable: React.FC = () => {
                     className="flex items-center gap-2"
                   >
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_HOST}/${item.images[2].url}`}
+                      src={`${process.env.NEXT_PUBLIC_STRAPI_HOST}/${item.images[3].url}`}
                       alt={item.productName}
                       className="w-10 h-10 rounded-full"
                       width={100}
                       height={100}
                     />
 
-                    <span>{item.productName}</span>
+                    <span className="text-medium">{item.productName}</span>
                   </Link>
                 </TableCell>
 
                 <TableCell>
                   <div className="relative flex items-center gap-2">
-                    <span className="">{item.quantity}</span>
+                    <span className="text-medium">{item.quantity}</span>
                   </div>
                 </TableCell>
 
-                <TableCell>${total}</TableCell>
+                <TableCell>
+                  {" "}
+                  <span className="text-medium"></span>
+                  {new Intl.NumberFormat("es-ES", {
+                    style: "currency",
+                    currency: "PEN",
+                    minimumFractionDigits: 2,
+                  }).format(total)}
+                </TableCell>
               </TableRow>
             );
           })}

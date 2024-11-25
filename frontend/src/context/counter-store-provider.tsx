@@ -6,7 +6,6 @@ import { useStore } from "zustand";
 import {
   type CartStore,
   createCartStore,
-  initCartStore,
 } from "@/stores/cart-store";
 
 export type CartStoreApi = ReturnType<typeof createCartStore>;
@@ -21,7 +20,7 @@ export const CartStoreProvider = ({ children }: CartStoreProviderProps) => {
   const storeRef = useRef<CartStoreApi>();
 
   if (!storeRef.current) {
-    storeRef.current = createCartStore(initCartStore());
+    storeRef.current = createCartStore();
   }
 
   return (

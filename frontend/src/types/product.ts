@@ -10,4 +10,5 @@ export interface ProductModel {
   updatedAt: string;
   publishedAt: string;
   decription: Array<{ text: string }>;
+  stock: number;
 }

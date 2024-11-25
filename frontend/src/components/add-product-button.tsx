@@ -14,10 +14,12 @@ interface AddProductButtonModel {
 export const AddProductButton: React.FC<AddProductButtonModel> = ({
   product,
 }) => {
-  const { addToCart } = useCartStore((state) => state);
+  const { addToCart, cart } = useCartStore((state) => state);
 
   const handleAddToCart = () => {
-    addToCart(product);
+    if (cart.length < product.stock) {
+      addToCart(product);
+    }
   };
 
   return (
@@ -25,6 +27,7 @@ export const AddProductButton: React.FC<AddProductButtonModel> = ({
       variant="solid"
       color="primary"
       onClick={handleAddToCart}
+      disabled={product.stock === 0}
       endContent={<LetsIconsAddRound fontSize={20} />}
     >
       Añadir al carrito

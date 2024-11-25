@@ -22,13 +22,18 @@ export const DetailsTable: React.FC = () => {
 
   return (
     <>
-      <p className="mb-2 font-bold">Detalle de la compra:</p>
+      <p className="mb-4 font-bold text-large">Detalle de la compra:</p>
 
-      <Table aria-label="Products List table" className="shadow-none" isStriped shadow="none">
+      <Table
+        aria-label="Products List table"
+        className="shadow-none"
+        isStriped
+        shadow="none"
+      >
         <TableHeader>
-          <TableColumn>Producto</TableColumn>
-          <TableColumn>Cantidad</TableColumn>
-          <TableColumn>Precio</TableColumn>
+          <TableColumn className="text-medium">Producto</TableColumn>
+          <TableColumn className="text-medium">Cantidad</TableColumn>
+          <TableColumn className="text-medium">Precio</TableColumn>
         </TableHeader>
 
         <TableBody>
@@ -38,16 +43,22 @@ export const DetailsTable: React.FC = () => {
             return (
               <TableRow key={item.documentId}>
                 <TableCell>
-                  <span>{item.productName}</span>
+                  <span className="text-medium">{item.productName}</span>
                 </TableCell>
 
                 <TableCell>
-                  <div className="relative flex items-center gap-2">
-                    <span className="text-lg">{item.quantity}</span>
-                  </div>
+                  <span className="text-medium">{item.quantity}</span>
                 </TableCell>
 
-                <TableCell>${total}</TableCell>
+                <TableCell>
+                  <span className="text-medium">
+                    {new Intl.NumberFormat("es-ES", {
+                      style: "currency",
+                      currency: "PEN",
+                      minimumFractionDigits: 2,
+                    }).format(total)}
+                  </span>
+                </TableCell>
               </TableRow>
             );
           })}
