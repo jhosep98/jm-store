@@ -4,16 +4,36 @@ import type { Metadata } from "next";
 import { findOneProductQuery } from "@/providers";
 import { ProductDetail, SwiperProduct } from "@/components";
 
-export const metadata: Metadata = {
-  title: "Classic T-Shirt",
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.",
-};
-
 const { STRAPI_HOST } = process.env;
 
-export default async function ProductIdPage() {
-  const product = await findOneProductQuery("n6axqeu9u6u7a3z1s0cnx10g");
+interface ProductIdPageModel {
+  params: { category: string; productId: string };
+}
+
+export async function generateMetadata({
+  params,
+}: ProductIdPageModel): Promise<Metadata> {
+  const { productId } = await params;
+
+  const product = await findOneProductQuery(productId);
+
+  return {
+    title: product.productName,
+    description: `Pagina del producto ${product.productName}`,
+    openGraph: {
+      title: product.productName,
+      description: `Pagina del producto ${product.productName}`,
+      images: product.images.map(
+        (image: { url: string }) => `${STRAPI_HOST}/${image.url}`
+      ),
+    },
+  };
+}
+
+export default async function ProductIdPage({ params }: ProductIdPageModel) {
+  const { productId } = await params;
+
+  const product = await findOneProductQuery(productId);
 
   return (
     <main className="max-w-screen-lg container mx-auto px-4 py-[25px] my-[25px] sm:pt-[65px] sm:mb-[120px]">
@@ -25,7 +45,7 @@ export default async function ProductIdPage() {
           }))}
         />
 
-        <ProductDetail />
+        <ProductDetail product={product} />
       </div>
     </main>
   );

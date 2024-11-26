@@ -2,12 +2,23 @@ import type { Metadata } from "next";
 
 import RowCard from "@/ui/row-card";
 import HomeHero from "@/ui/home-hero";
-import { findHomeInfoQuery } from "@/providers";
+import { findHomeInfoQuery, findHomeSeoQuery } from "@/providers";
 
-export const metadata: Metadata = {
-  title: "JM Store",
-  description: "JM Store",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const homeSeo = await findHomeSeoQuery();
+
+  console.log(homeSeo);
+
+  return {
+    title: homeSeo.siteName,
+    description: homeSeo.siteDescription,
+    openGraph: {
+      title: homeSeo.defaultSeo.siteName,
+      description: homeSeo.defaultSeo.siteDescription,
+      images: homeSeo.image,
+    },
+  };
+}
 
 export default async function HomePage() {
   const { firstSubtitle } = await findHomeInfoQuery();

@@ -32,8 +32,6 @@ const LOCAL_STORAGE_KEY = "cart_data";
 const loadCartFromLocalStorage = (): ProductModel[] => {
   const storedCart = localStorage.getItem(LOCAL_STORAGE_KEY);
 
-  console.log("storedCart", storedCart);
-
   return storedCart ? JSON.parse(storedCart) : [];
 };
 
@@ -45,8 +43,6 @@ const saveCartToLocalStorage = (cart: ProductModel[]) => {
 export const createCartStore = (
   initState: CartState = { cart: loadCartFromLocalStorage() }
 ) => {
-  console.log("initState", initState);
-
   return createStore<CartStore>()((set) => ({
     ...initState,
 

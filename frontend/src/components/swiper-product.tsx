@@ -71,7 +71,7 @@ export const SwiperProduct: React.FC<SwiperProductModel> = ({ images }) => {
               <Image
                 src={img.image}
                 alt={img.name}
-                className="w-full object-top rounded-md shadow-lg h-[480px]"
+                className="object-top rounded-md shadow-lg w-full h-auto"
                 width={600}
                 height={480}
                 priority
