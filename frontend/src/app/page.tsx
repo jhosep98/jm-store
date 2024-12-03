@@ -7,8 +7,6 @@ import { findHomeInfoQuery, findHomeSeoQuery } from "@/providers";
 export async function generateMetadata(): Promise<Metadata> {
   const homeSeo = await findHomeSeoQuery();
 
-  console.log(homeSeo);
-
   return {
     title: homeSeo.siteName,
     description: homeSeo.siteDescription,

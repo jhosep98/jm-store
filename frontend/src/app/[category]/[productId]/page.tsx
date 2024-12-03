@@ -13,7 +13,7 @@ interface ProductIdPageModel {
 export async function generateMetadata({
   params,
 }: ProductIdPageModel): Promise<Metadata> {
-  const { productId } = await params;
+  const { productId } = params;
 
   const product = await findOneProductQuery(productId);
 
@@ -31,7 +31,7 @@ export async function generateMetadata({
 }
 
 export default async function ProductIdPage({ params }: ProductIdPageModel) {
-  const { productId } = await params;
+  const { productId } = params;
 
   const product = await findOneProductQuery(productId);
 

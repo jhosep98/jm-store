@@ -2,6 +2,13 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { Button } from "@nextui-org/button";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  useDisclosure,
+} from "@nextui-org/modal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
@@ -13,14 +20,14 @@ import {
   MeteorIconsChevronRight,
   MiClose,
 } from "@/lib/icons-name";
-import { Button } from "@nextui-org/button";
 
 interface SwiperProductModel {
   images: Array<{ image: string; name: string }>;
 }
 
 export const SwiperProduct: React.FC<SwiperProductModel> = ({ images }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  // const [isOpen, setIsOpen] = React.useState(false);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
 
@@ -48,10 +55,12 @@ export const SwiperProduct: React.FC<SwiperProductModel> = ({ images }) => {
 
   const openModal = (index: number) => {
     setCurrentImageIndex(index);
-    setIsOpen(true);
+    onOpen();
   };
 
-  const closeModal = () => setIsOpen(false);
+  const closeModal = () => {
+    onOpenChange();
+  };
 
   return (
     <>
@@ -67,7 +76,12 @@ export const SwiperProduct: React.FC<SwiperProductModel> = ({ images }) => {
           modules={[Navigation, Pagination, Autoplay]}
         >
           {images.map((img) => (
-            <SwiperSlide key={img.name}>
+            <SwiperSlide
+              key={img.name}
+              onClick={() => {
+                openModal(images.indexOf(img));
+              }}
+            >
               <Image
                 src={img.image}
                 alt={img.name}
@@ -81,45 +95,61 @@ export const SwiperProduct: React.FC<SwiperProductModel> = ({ images }) => {
         </Swiper>
       </div>
 
-      {isOpen ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-90 backdrop-blur-md backdrop-saturate-150 bg-overlay/80 w-screen h-screen">
-          <Button
-            isIconOnly
-            onClick={showNextImage}
-            className="absolute top-1/2 left-16 text-white rounded-full"
-            variant="light"
-          >
-            <MeteorIconsChevronLeft fontSize={32} />
-          </Button>
+      <Modal
+        onOpenChange={onOpenChange}
+        isOpen={isOpen}
+        size="2xl"
+        backdrop="blur"
+        classNames={{
+          closeButton: "hidden",
+          base: "h-[480px] rounded-none",
+          backdrop: "bg-overlay/80",
+        }}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <Button
+                isIconOnly
+                onClick={showNextImage}
+                className="fixed top-1/2 left-16 text-white rounded-none bg-[rgba(0,0,0,0.3)]"
+                variant="light"
+                aria-label="Previous image"
+              >
+                <MeteorIconsChevronLeft fontSize={32} />
+              </Button>
 
-          <Button
-            isIconOnly
-            className="absolute top-1/2 right-16 text-white rounded-full"
-            variant="light"
-            onClick={showNextImage}
-          >
-            <MeteorIconsChevronRight fontSize={32} />
-          </Button>
+              <Button
+                isIconOnly
+                className="fixed top-1/2 right-16 text-white rounded-none bg-[rgba(0,0,0,0.3)]"
+                variant="light"
+                onClick={showNextImage}
+                aria-label="Next image"
+              >
+                <MeteorIconsChevronRight fontSize={32} />
+              </Button>
 
-          <Button
-            className="absolute top-4 right-8 text-white rounded-full"
-            onClick={closeModal}
-            variant="light"
-            isIconOnly
-          >
-            <MiClose fontSize={32} />
-          </Button>
+              <Button
+                className="fixed top-4 right-4 text-white rounded-none bg-[rgba(0,0,0,0.3)]"
+                onClick={onClose}
+                variant="light"
+                isIconOnly
+                aria-label="Close modal"
+              >
+                <MiClose fontSize={32} />
+              </Button>
 
-          <Image
-            src={images[currentImageIndex].image}
-            alt={images[currentImageIndex].name}
-            width={700}
-            height={620}
-            className="object-contain"
-            priority
-          />
-        </div>
-      ) : null}
+              <Image
+                src={images[currentImageIndex].image}
+                alt={images[currentImageIndex].name}
+                fill
+                className="object-cover"
+                priority
+              />
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </>
   );
 };
