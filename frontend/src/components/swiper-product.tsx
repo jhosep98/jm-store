@@ -3,14 +3,14 @@
 import * as React from "react";
 import Image from "next/image";
 import { Button } from "@nextui-org/button";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import {
   Modal,
   ModalContent,
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/modal";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -26,20 +26,8 @@ interface SwiperProductModel {
 }
 
 export const SwiperProduct: React.FC<SwiperProductModel> = ({ images }) => {
-  // const [isOpen, setIsOpen] = React.useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [currentSlide, setCurrentSlide] = React.useState(0);
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
-
-  const nextSlide = React.useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % (images.length - 4));
-  }, [images.length]);
-
-  const prevSlide = React.useCallback(() => {
-    setCurrentSlide(
-      (prev) => (prev - 1 + (images.length - 4)) % (images.length - 4)
-    );
-  }, [images.length]);
 
   const showNextImage = () => {
     setCurrentImageIndex((prevIndex) =>
@@ -56,10 +44,6 @@ export const SwiperProduct: React.FC<SwiperProductModel> = ({ images }) => {
   const openModal = (index: number) => {
     setCurrentImageIndex(index);
     onOpen();
-  };
-
-  const closeModal = () => {
-    onOpenChange();
   };
 
   return (
@@ -100,6 +84,7 @@ export const SwiperProduct: React.FC<SwiperProductModel> = ({ images }) => {
         isOpen={isOpen}
         size="2xl"
         backdrop="blur"
+        placement="center"
         classNames={{
           closeButton: "hidden",
           base: "h-[480px] rounded-none",
@@ -111,8 +96,8 @@ export const SwiperProduct: React.FC<SwiperProductModel> = ({ images }) => {
             <>
               <Button
                 isIconOnly
-                onClick={showNextImage}
-                className="fixed top-1/2 left-16 text-white rounded-none bg-[rgba(0,0,0,0.3)]"
+                onClick={showPrevImage}
+                className="absolute z-10 left-4  sm:fixed top-1/2 sm:left-16 text-white rounded-none bg-[rgba(0,0,0,0.3)]"
                 variant="light"
                 aria-label="Previous image"
               >
@@ -121,7 +106,7 @@ export const SwiperProduct: React.FC<SwiperProductModel> = ({ images }) => {
 
               <Button
                 isIconOnly
-                className="fixed top-1/2 right-16 text-white rounded-none bg-[rgba(0,0,0,0.3)]"
+                className="absolute z-10 right-4 sm:fixed top-1/2 sm:right-16 text-white rounded-none bg-[rgba(0,0,0,0.3)]"
                 variant="light"
                 onClick={showNextImage}
                 aria-label="Next image"
