@@ -54,6 +54,9 @@
       "type": "integer",
       "required": true,
       "default": 0
+    },
+    "rawDescription": {
+      "type": "text"
     }
   }
 }

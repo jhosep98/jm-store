@@ -5,17 +5,31 @@ import HomeHero from "@/ui/home-hero";
 import { findHomeInfoQuery, findHomeSeoQuery } from "@/providers";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const homeSeo = await findHomeSeoQuery();
+  try {
+    const homeSeo = await findHomeSeoQuery();
 
-  return {
-    title: homeSeo.siteName,
-    description: homeSeo.siteDescription,
-    openGraph: {
-      title: homeSeo.defaultSeo.siteName,
-      description: homeSeo.defaultSeo.siteDescription,
-      images: homeSeo.image,
-    },
-  };
+    return {
+      title: homeSeo.siteName,
+      description: homeSeo.siteDescription,
+      openGraph: {
+        title: homeSeo.defaultSeo.siteName,
+        description: homeSeo.defaultSeo.siteDescription,
+        images: homeSeo.image,
+      },
+    };
+  } catch (error) {
+    return {
+      title: "JM Store",
+      description:
+        "Descubrí productos increíbles y recibilos en la puerta de tu casa. ¡Compra online y disfrutá la comodidad!",
+      openGraph: {
+        title: "JM Store",
+        description:
+          "Descubrí productos increíbles y recibilos en la puerta de tu casa. ¡Compra online y disfrutá la comodidad!",
+        images: [],
+      },
+    };
+  }
 }
 
 export default async function HomePage() {

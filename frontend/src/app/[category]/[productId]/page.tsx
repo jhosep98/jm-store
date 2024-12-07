@@ -21,10 +21,10 @@ export async function generateMetadata({
 
     return {
       title: product.productName,
-      description: `Pagina del producto ${product.productName}`,
+      description: product.rawDescription,
       openGraph: {
         title: product.productName,
-        description: `Pagina del producto ${product.productName}`,
+        description: product.rawDescription,
         images: product.images.map(
           (image: { url: string }) => `${STRAPI_HOST}/${image.url}`
         ),

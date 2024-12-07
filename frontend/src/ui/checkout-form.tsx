@@ -146,27 +146,29 @@ export const CheckoutForm: React.FC<CheckoutFormModel> = ({
             {...commonProps}
           />
 
-          <FormField
-            type="text"
-            label="Referencia"
-            placeholder="Entre Avenida de la República y Av. los Próceres"
-            labelPlacement="outside"
-            name="reference"
-            error={errors.reference}
-            {...commonProps}
-          />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <FormField
+              type="text"
+              label="Referencia"
+              placeholder="Entre Avenida de la República y Av. los Próceres"
+              labelPlacement="outside"
+              name="reference"
+              error={errors.reference}
+              {...commonProps}
+            />
 
-          <FormField
-            type="number"
-            label="Total"
-            placeholder="100"
-            labelPlacement="outside"
-            name="totalPurchase"
-            error={errors.totalPurchase}
-            {...commonProps}
-            required={false}
-            isDisabled={true}
-          />
+            <FormField
+              type="number"
+              label="Total"
+              placeholder="100"
+              labelPlacement="outside"
+              name="totalPurchase"
+              error={errors.totalPurchase}
+              {...commonProps}
+              required={false}
+              isDisabled={true}
+            />
+          </div>
         </div>
 
         <Button

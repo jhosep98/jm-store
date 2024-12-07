@@ -94,6 +94,12 @@ export const SwiperProduct: React.FC<SwiperProductModel> = ({ images }) => {
         <ModalContent>
           {(onClose) => (
             <>
+              <div className="fixed top-4 left-4 text-white rounded-none bg-[rgba(0,0,0,0.3)] p-1">
+                <span className="text-sm font-semibold">
+                  {currentImageIndex + 1} / {images.length}
+                </span>
+              </div>
+
               <Button
                 isIconOnly
                 onClick={showPrevImage}
