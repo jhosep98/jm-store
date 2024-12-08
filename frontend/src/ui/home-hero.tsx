@@ -32,6 +32,7 @@ const HomeHero: React.FC = async () => {
               color="default"
               className="text-white animate-bounce"
               isIconOnly
+              aria-label="New releases"
             >
               <MiChevronDown />
             </Button>

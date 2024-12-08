@@ -28,6 +28,7 @@ export const ProductCard: React.FC<ProductCardModel> = (item) => (
               className="object-cover rounded-sm min-h-72"
               src={item.image}
               priority
+              sizes="(max-width: 768px) 100vw, 768px"
               fill
             />
           </div>
@@ -52,7 +53,7 @@ export const ProductCard: React.FC<ProductCardModel> = (item) => (
                 }).format(item.price)}
               </p>
 
-              <span className="line-through text-md text-gray-400">
+              <span className="line-through text-md text-gray-500">
                 {new Intl.NumberFormat("es-ES", {
                   style: "currency",
                   currency: "PEN",

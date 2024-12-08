@@ -1,16 +1,15 @@
 import * as React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Navbar, NavbarBrand, NavbarContent } from "@nextui-org/navbar";
 
 import { Cart } from "@/components";
+import { JmStoreLogo } from "@/lib/icons-name";
 
 export const MainNavbar: React.FC = () => (
   <Navbar isBordered maxWidth="lg" className="[&>header]:px-4">
-    <Link href="/">
+    <Link href="/" aria-label="Home">
       <NavbarBrand>
-        <Image src="/vercel.svg" alt="JM Store" width={42} height={42} />
-        <span className="ml-2 text-lg font-bold foreground">JM Store</span>
+        <JmStoreLogo width="60.000000pt" height="60.000000pt" />
       </NavbarBrand>
     </Link>
 
