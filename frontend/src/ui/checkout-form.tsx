@@ -21,7 +21,6 @@ interface CheckoutFormModel {
 }
 
 export const CheckoutForm: React.FC<CheckoutFormModel> = ({
-  isSuccess,
   setIsSuccess,
 }) => {
   const { clearCart } = useCartStore((state) => state);
@@ -60,8 +59,8 @@ export const CheckoutForm: React.FC<CheckoutFormModel> = ({
           uniqueProducts.forEach(async (product) => {
             await createPurchaseMutation(
               {
-                price: product.price,
-                product: product.productName,
+                price: product.data?.price ?? 0,
+                product: product.data?.productName ?? "",
                 quantity: product.quantity,
                 totalPrice: +totalPrice,
                 customerId: {
@@ -89,6 +88,7 @@ export const CheckoutForm: React.FC<CheckoutFormModel> = ({
         });
     } catch (error) {
       setIsSuccess(false);
+      throw new Error(`${error}`);
     }
   };
 

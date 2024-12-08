@@ -2,15 +2,15 @@
 
 import { createStore } from "zustand/vanilla";
 
-import { ProductModel } from "@/types/product";
+import { APIProduct } from "@/types";
 
 export type CartState = {
-  cart: ProductModel[];
+  cart: APIProduct[];
 };
 
 export type CartActions = {
-  addToCart: (product: ProductModel) => void;
-  removeFromCart: (product: ProductModel) => void;
+  addToCart: (product: APIProduct) => void;
+  removeFromCart: (product: APIProduct) => void;
   clearCart: () => void;
 };
 
@@ -29,15 +29,20 @@ export const defaultInitState: CartState = {
 const LOCAL_STORAGE_KEY = "cart_data";
 
 // Load cart from localStorage
-const loadCartFromLocalStorage = (): ProductModel[] => {
-  const storedCart = localStorage.getItem(LOCAL_STORAGE_KEY);
+const loadCartFromLocalStorage = (): APIProduct[] => {
+  if (typeof window !== "undefined") {
+    const storedCart = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return storedCart ? JSON.parse(storedCart) : [];
+  }
 
-  return storedCart ? JSON.parse(storedCart) : [];
+  return [];
 };
 
 // Save cart to localStorage
-const saveCartToLocalStorage = (cart: ProductModel[]) => {
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cart));
+const saveCartToLocalStorage = (cart: APIProduct[]) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cart));
+  }
 };
 
 export const createCartStore = (
@@ -57,7 +62,7 @@ export const createCartStore = (
     removeFromCart: (item) => {
       set((state) => {
         const updatedCart = state.cart.filter(
-          (cartItem) => cartItem.id !== item.id
+          (cartItem) => cartItem.data.id !== item.data.id
         );
         saveCartToLocalStorage(updatedCart);
         return { cart: updatedCart };

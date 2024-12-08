@@ -8,7 +8,6 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import {
   Modal,
   ModalContent,
-  ModalHeader,
   useDisclosure,
 } from "@nextui-org/modal";
 

@@ -1,10 +1,11 @@
 import { query } from "@/lib/strapi";
+import { APIProduct } from "@/types";
 
 export async function findOneProductQuery(productId: string) {
   try {
-    const res = await query(`products/${productId}?populate=*`);
+    const res = await query<APIProduct>(`products/${productId}?populate=*`);
 
-    return res.data;
+    return res;
   } catch (error) {
     throw new Error(`${error}`);
   }

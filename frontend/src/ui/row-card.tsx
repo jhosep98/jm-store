@@ -1,38 +1,36 @@
 import * as React from "react";
 
 import { ProductCard } from "@/components";
-import { ProductModel } from "@/types/product";
 import { findManyProductsQuery } from "@/providers";
+import { APIProductList } from "@/types/generated/product-list.interface";
 
 const { STRAPI_HOST } = process.env;
 
 export default async function RowCard() {
-  const products: Array<ProductModel> = await findManyProductsQuery();
+  const products: APIProductList = await findManyProductsQuery();
 
   return (
     <section>
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map(
-          ({ id, productName, price, images, category, stock, slug, documentId }) => {
-            const photos = images.map(
-              (img: { url: string }) => `${STRAPI_HOST}/${img.url}`
-            );
+        {products.data.map((data) => {
+          const photos = data.images.map(
+            (img: { url: string }) => `${STRAPI_HOST}/${img.url}`
+          );
 
-            return (
-              <ProductCard
-                id={id}
-                name={productName}
-                price={price}
-                image={photos[2]}
-                category={category.slug}
-                slug={slug}
-                key={id}
-                stock={stock}
-                documentId={documentId}
-              />
-            );
-          }
-        )}
+          return (
+            <ProductCard
+              id={data.id}
+              name={data.productName}
+              price={data.price}
+              image={photos[2]}
+              category={data.category.slug}
+              slug={data.slug}
+              key={data.id}
+              stock={data.stock}
+              documentId={data.documentId}
+            />
+          );
+        })}
       </div>
     </section>
   );

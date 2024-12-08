@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { Input } from "@nextui-org/input";
 import { Controller } from "react-hook-form";
@@ -18,15 +20,17 @@ export const FormField: React.FC<CustomerFormFieldProps> = ({
     <Controller
       control={control}
       name={name}
-      render={({ field }) => (
+      render={({ field: { onChange, value, onBlur, ref } }) => (
         <Input
-          {...field}
-          {...rest}
           type={type}
           placeholder={placeholder}
-          name={name}
           register={register}
           valueAsNumber={valueAsNumber}
+          onChange={onChange}
+          onBlur={onBlur}
+          ref={ref}
+          value={`${value}`}
+          {...rest}
         />
       )}
     />

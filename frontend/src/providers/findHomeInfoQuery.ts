@@ -1,10 +1,11 @@
 import { query } from "@/lib/strapi";
+import { APIHomeInfo } from "@/types/generated/home-info.interface";
 
 const { STRAPI_HOST } = process.env;
 
 export async function findHomeInfoQuery() {
   try {
-    const res = await query("home?populate=cover");
+    const res = await query<APIHomeInfo>("home?populate=cover");
 
     const { title, description, cover, firstSubtitle } = res.data;
 

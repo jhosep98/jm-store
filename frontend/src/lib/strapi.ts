@@ -1,6 +1,6 @@
 const { STRAPI_TOKEN, STRAPI_HOST } = process.env;
 
-export async function query(path: string) {
+export async function query<T>(path: string): Promise<T> {
   try {
     const res = await fetch(`${STRAPI_HOST}/api/${path}`, {
       headers: {

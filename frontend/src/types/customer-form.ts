@@ -20,9 +20,9 @@ export type CustomerFormData = {
   totalPurchase: number;
 };
 
-export interface CustomerFormFieldProps extends InputProps {
+export interface CustomerFormFieldProps extends Omit<InputProps, "value"> {
   name: ValidFieldNames;
-  control: Control<CustomerFormData, any>;
+  control: Control<CustomerFormData, string>;
   register: UseFormRegister<CustomerFormData>;
   error: FieldError | undefined;
   valueAsNumber?: boolean;
@@ -41,5 +41,7 @@ export type PurchaseFormData = {
   quantity: number;
   price: number;
   totalPrice: number;
-  customerId: any;
+  customerId: {
+    connect: Array<{ id: number; documentId: string }>;
+  };
 };

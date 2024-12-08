@@ -1,8 +1,8 @@
+import { APIProduct } from "@/types";
 import { mutation } from "@/lib/strapi";
-import { ProductModel } from "@/types/product";
 
 export async function updateProductMutation(
-  product: Partial<ProductModel>,
+  product: Partial<APIProduct>,
   {
     strapiHost,
     strapiToken,

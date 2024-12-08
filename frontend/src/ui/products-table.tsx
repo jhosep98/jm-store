@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@nextui-org/button";
 import {
   Table,
@@ -15,7 +16,6 @@ import {
 import { useCartStore } from "@/context";
 import { useGetProductDetails } from "@/hooks";
 import { MaterialSymbolsDeleteOutline, SiWalletLine } from "@/lib/icons-name";
-import Image from "next/image";
 
 export const ProductsTable: React.FC = () => {
   const { clearCart } = useCartStore((state) => state);
@@ -62,24 +62,26 @@ export const ProductsTable: React.FC = () => {
 
         <TableBody>
           {uniqueProducts.map((item) => {
-            const total = item.quantity * item.price;
+            const total = item.quantity * (item?.data?.price ?? 0);
 
             return (
-              <TableRow key={item.documentId}>
+              <TableRow key={item?.data?.documentId}>
                 <TableCell>
                   <Link
-                    href={`/${item.category.slug}/${item.slug}`}
+                    href={`/${item?.data?.category.slug}/${item?.data?.slug}`}
                     className="flex items-center gap-2"
                   >
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_HOST}/${item.images[3].url}`}
-                      alt={item.productName}
+                      src={`${process.env.NEXT_PUBLIC_STRAPI_HOST}/${item?.data?.images[3].url}`}
+                      alt={item?.data?.productName ?? ""}
                       className="w-10 h-10 rounded-full"
                       width={100}
                       height={100}
                     />
 
-                    <span className="text-medium">{item.productName}</span>
+                    <span className="text-medium">
+                      {item?.data?.productName}
+                    </span>
                   </Link>
                 </TableCell>
 

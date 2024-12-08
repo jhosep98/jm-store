@@ -12,16 +12,15 @@ export async function generateMetadata(): Promise<Metadata> {
       title: homeSeo.siteName,
       description: homeSeo.siteDescription,
       openGraph: {
-        title: homeSeo.defaultSeo.siteName,
-        description: homeSeo.defaultSeo.siteDescription,
+        title: homeSeo.defaultSeo.metaTitle,
+        description: homeSeo.defaultSeo.metaDescription,
         images: homeSeo.image,
       },
     };
-  } catch (error) {
+  } catch (e) {
     return {
       title: "JM Store",
-      description:
-        "Descubrí productos increíbles y recibilos en la puerta de tu casa. ¡Compra online y disfrutá la comodidad!",
+      description: `Descubrí productos increíbles y recibilos en la puerta de tu casa. ¡Compra online y disfrutá la comodidad! ${e}`,
       openGraph: {
         title: "JM Store",
         description:
