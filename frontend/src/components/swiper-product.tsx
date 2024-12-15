@@ -5,11 +5,7 @@ import Image from "next/image";
 import { Button } from "@nextui-org/button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import {
-  Modal,
-  ModalContent,
-  useDisclosure,
-} from "@nextui-org/modal";
+import { Modal, ModalContent, useDisclosure } from "@nextui-org/modal";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -64,11 +60,12 @@ export const SwiperProduct: React.FC<SwiperProductModel> = ({ images }) => {
               onClick={() => {
                 openModal(images.indexOf(img));
               }}
+              className="overflow-hidden inline-block"
             >
               <Image
                 src={img.image}
                 alt={img.name}
-                className="object-top rounded-md shadow-lg w-full h-auto"
+                className="object-top rounded-md shadow-lg w-full h-auto hover:scale-110 duration-500 transition-transform"
                 width={600}
                 height={480}
                 priority

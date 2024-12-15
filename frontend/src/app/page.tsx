@@ -42,7 +42,7 @@ export default async function HomePage() {
 
       <main
         id="new-releases"
-        className="max-w-screen-lg container mx-auto px-4 py-[35px] my-[35px] sm:py-[75px] sm:my-[75px]"
+        className="max-w-screen-lg container mx-auto px-4 py-[35px] my-[35px] sm:py-[55px] sm:my-[55px]"
       >
         <h2 className="text-3xl font-bold mb-8 text-center">{firstSubtitle}</h2>
 

@@ -19,13 +19,13 @@ interface ProductCardModel {
 
 export const ProductCard: React.FC<ProductCardModel> = (item) => (
   <Link href={`${item.category}/${item.documentId}`}>
-    <Card shadow="none" className="border-none rounded-md bg-gray-50">
+    <Card shadow="none" className="border-none rounded-none bg-transparent">
       {item.image ? (
-        <CardBody>
-          <div className="relative min-h-72">
+        <CardBody className="p-0">
+          <div className="relative min-h-96 overflow-hidden inline-block">
             <Image
               alt={item.name}
-              className="object-cover rounded-sm min-h-72"
+              className="object-cover rounded-sm min-h-96"
               src={item.image}
               priority
               sizes="(max-width: 768px) 100vw, 768px"
@@ -39,20 +39,12 @@ export const ProductCard: React.FC<ProductCardModel> = (item) => (
         </Skeleton>
       )}
 
-      <CardFooter className="flex justify-between items-end p-4 pt-0">
+      <CardFooter className="flex justify-between items-end p-0 mt-3">
         <div className="flex-col items-start">
-          <h3 className="text-xl font-bold mb-2">{item.name}</h3>
+          <h3 className="text-xl font-light mb-2">{item.name}</h3>
 
           <div className="flex justify-between items-center w-full">
             <div className="flex items-center gap-2">
-              <p className="text-lg">
-                {new Intl.NumberFormat("es-ES", {
-                  style: "currency",
-                  currency: "PEN",
-                  minimumFractionDigits: 2,
-                }).format(item.price)}
-              </p>
-
               <span className="line-through text-md text-gray-500">
                 {new Intl.NumberFormat("es-ES", {
                   style: "currency",
@@ -60,13 +52,21 @@ export const ProductCard: React.FC<ProductCardModel> = (item) => (
                   minimumFractionDigits: 2,
                 }).format(item.price + 25)}
               </span>
+
+              <p className="text-md font-semibold">
+                {new Intl.NumberFormat("es-ES", {
+                  style: "currency",
+                  currency: "PEN",
+                  minimumFractionDigits: 2,
+                }).format(item.price)}
+              </p>
             </div>
           </div>
         </div>
 
-        {/* <div>
+        <div className="px-2">
           <p className="text-md font-semibold">{item.stock}/u</p>
-        </div> */}
+        </div>
       </CardFooter>
     </Card>
   </Link>
