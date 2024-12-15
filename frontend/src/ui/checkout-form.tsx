@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { Button } from "@nextui-org/button";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useCartStore } from "@/context";
 import { FormField } from "@/components";
 import { useGetProductDetails } from "@/hooks";
+import { DEFAULT_NOTIFY_MESSAGES } from "@/lib/constants";
 import { CustomerFormData, CustomerScheme } from "@/types/customer-form";
 import { createCustomerMutation, createPurchaseMutation } from "@/providers";
 
@@ -20,9 +22,7 @@ interface CheckoutFormModel {
   setIsSuccess: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const CheckoutForm: React.FC<CheckoutFormModel> = ({
-  setIsSuccess,
-}) => {
+export const CheckoutForm: React.FC<CheckoutFormModel> = ({ setIsSuccess }) => {
   const { clearCart } = useCartStore((state) => state);
   const { totalPrice, uniqueProducts } = useGetProductDetails();
 
@@ -46,49 +46,58 @@ export const CheckoutForm: React.FC<CheckoutFormModel> = ({
 
   const onSubmit = async (data: CustomerFormData) => {
     try {
-      await createCustomerMutation(
+      // Step 1: Create the customer
+      const customer = await createCustomerMutation(
         {
           ...data,
           totalPurchase: totalPrice,
         },
-        { strapiHost, strapiToken }
-      )
-        .then((customer) => {
-          if (!customer.id) return;
+        {
+          strapiHost,
+          strapiToken,
+        }
+      );
 
-          uniqueProducts.forEach(async (product) => {
-            await createPurchaseMutation(
-              {
-                price: product.data?.price ?? 0,
-                product: product.data?.productName ?? "",
-                quantity: product.quantity,
-                totalPrice: +totalPrice,
-                customerId: {
-                  connect: [
-                    {
-                      id: customer.id,
-                      documentId: customer.documentId,
-                    },
-                  ],
+      if (!customer?.id) {
+        toast.error(DEFAULT_NOTIFY_MESSAGES.error_customer);
+      }
+
+      // Step 2: Create purchases for all unique products
+      const purchasePromises = uniqueProducts.map((product) =>
+        createPurchaseMutation(
+          {
+            price: product.data?.price ?? 0,
+            product: product.data?.productName ?? "",
+            quantity: product.quantity,
+            totalPrice: +totalPrice,
+            customerId: {
+              connect: [
+                {
+                  id: customer.id,
+                  documentId: customer.documentId,
                 },
-              },
-              { strapiHost, strapiToken }
-            );
-          });
-        })
-        .then(() => {
-          clearCart();
-          setIsSuccess(true);
-        })
-        .catch(() => {
-          setIsSuccess(false);
-        })
-        .finally(() => {
-          reset();
-        });
+              ],
+            },
+          },
+          {
+            strapiHost,
+            strapiToken,
+          }
+        )
+      );
+
+      await Promise.all(purchasePromises);
+
+      // Step 3: Clear the cart and reset form state
+      clearCart();
+      setIsSuccess(true);
+      toast.success(DEFAULT_NOTIFY_MESSAGES.success_purchase);
     } catch (error) {
+      toast.error(DEFAULT_NOTIFY_MESSAGES.error_purchase);
       setIsSuccess(false);
-      throw new Error(`${error}`);
+    } finally {
+      // Always reset the form
+      reset();
     }
   };
 

@@ -13,6 +13,8 @@ export const BuySuccess: React.FC = () => (
         alt="super thanks"
         width={320}
         height={220}
+        placeholder="blur"
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
       />
 
       <p className="text-center text-xl font-bold mt-6">

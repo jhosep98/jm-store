@@ -1,0 +1,5 @@
+export const DEFAULT_NOTIFY_MESSAGES = {
+  success_purchase: "Orden de compra creado con éxito",
+  error_purchase: "Error al crear la compra",
+  error_customer: "Error al crear el cliente",
+};

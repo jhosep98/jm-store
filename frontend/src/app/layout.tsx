@@ -1,9 +1,8 @@
 import localFont from "next/font/local";
-import { NextUIProvider } from "@nextui-org/react";
 
 import "./globals.css";
 import { MainFooter, MainNavbar } from "@/ui";
-import { CartStoreProvider } from "@/context";
+import { AppProviders } from "@/context/app-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -16,14 +15,6 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-
-function AppProviders({ children }: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <CartStoreProvider>
-      <NextUIProvider>{children}</NextUIProvider>
-    </CartStoreProvider>
-  );
-}
 
 export default function RootLayout({
   children,

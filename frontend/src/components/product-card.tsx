@@ -64,9 +64,9 @@ export const ProductCard: React.FC<ProductCardModel> = (item) => (
           </div>
         </div>
 
-        <div>
+        {/* <div>
           <p className="text-md font-semibold">{item.stock}/u</p>
-        </div>
+        </div> */}
       </CardFooter>
     </Card>
   </Link>
