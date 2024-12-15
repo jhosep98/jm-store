@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import * as React from "react";
 import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { Popover, PopoverTrigger, PopoverContent } from "@nextui-org/popover";
