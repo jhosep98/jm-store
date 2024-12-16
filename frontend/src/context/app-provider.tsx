@@ -2,6 +2,7 @@
 
 import { Toaster } from "sonner";
 import { NextUIProvider } from "@nextui-org/react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 import { CartStoreProvider } from "./counter-store-provider";
 
@@ -10,7 +11,11 @@ export function AppProviders({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <CartStoreProvider>
-      <NextUIProvider>{children}</NextUIProvider>
+      <NextUIProvider>
+        <NextThemesProvider attribute="class" defaultTheme="light">
+          {children}
+        </NextThemesProvider>
+      </NextUIProvider>
 
       <Toaster
         position="top-right"

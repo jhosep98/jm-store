@@ -14,7 +14,7 @@ import {
 } from "@/lib/icons-name";
 
 export const BannerFixed: React.FC = () => (
-  <div className="py-2 px-4 text-white bg-black sticky top-0 z-10">
+  <div className="py-3 px-4 text-white bg-black sticky top-0 z-10 border-b border-divider">
     <Swiper
       modules={[Autoplay]}
       slidesPerView="auto"

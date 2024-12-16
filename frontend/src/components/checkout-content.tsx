@@ -29,7 +29,7 @@ export const CheckoutContent: React.FC<CheckoutContentModel> = ({
         <DetailsTable />
       </div>
 
-      <div className="rounded-xl p-6 col-span-1 bg-white">
+      <div className="rounded-xl p-6 col-span-1 bg-content1">
         <CheckoutForm
           isSuccess={isSuccess}
           setIsSuccess={setIsSuccess}

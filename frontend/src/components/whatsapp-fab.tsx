@@ -25,7 +25,7 @@ export const WhatsAppFab: React.FC = () => {
           size="lg"
           isIconOnly
           as={Link}
-          className="fixed bottom-4 right-4 rounded-full bg-white shadow-lg z-10 hover:bg-gray-50 focus:outline-none animate-bounce"
+          className="fixed bottom-4 right-4 rounded-full shadow-lg z-10 hover:bg-gray-50 focus:outline-none animate-bounce"
           aria-label="Whatsapp"
           target="_blank"
           href="https://api.whatsapp.com/send?phone=51907931948&text=Hola,%20deseo%20hacer%20una%20consulta.%20%C2%BFPodr%C3%ADas%20ayudarme%3F"

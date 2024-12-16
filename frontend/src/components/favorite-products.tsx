@@ -13,7 +13,7 @@ export const FavoriteProducts: React.FC = () => {
         href="/favorites"
         isIconOnly
         variant="light"
-        aria-label="cart"
+        aria-label="favorites products"
         className="rounded-full"
       >
         <MaterialSymbolsLightFavoriteOutline className="text-foreground" />

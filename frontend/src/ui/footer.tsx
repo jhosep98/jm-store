@@ -7,7 +7,7 @@ import { JmStoreLogo, MdiFacebook, MdiInstagram } from "@/lib/icons-name";
 
 export const MainFooter: React.FC = () => (
   <>
-    <footer className="bg-white text-foreground border-t border-divider">
+    <footer className="text-foreground border-t border-divider">
       <div className="max-w-screen-lg container mx-auto px-4 pt-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div className="lg:col-span-3">
