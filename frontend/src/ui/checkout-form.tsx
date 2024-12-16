@@ -97,6 +97,7 @@ export const CheckoutForm: React.FC<CheckoutFormModel> = ({
     } catch (error) {
       toast.error(DEFAULT_NOTIFY_MESSAGES.error_purchase);
       setIsSuccess(false);
+      throw new Error(`Error al crear la compra: ${error}`);
     } finally {
       // Always reset the form
       reset();
