@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { NavbarItem } from "@nextui-org/navbar";
 
+import { APP_ROUTES } from "@/lib/constants";
 import { MaterialSymbolsLightFavoriteOutline } from "@/lib/icons-name";
 
 export const FavoriteProducts: React.FC = () => {
@@ -10,7 +11,7 @@ export const FavoriteProducts: React.FC = () => {
     <NavbarItem>
       <Button
         as={Link}
-        href="/favorites"
+        href={APP_ROUTES.FAVORITES}
         isIconOnly
         variant="light"
         aria-label="favorites products"

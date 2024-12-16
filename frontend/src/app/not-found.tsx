@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { APP_ROUTES } from "@/lib/constants";
+
 export default function NotFound() {
   return (
     <main className="max-w-screen-lg container mx-auto px-4 py-[25px] my-[25px] sm:pt-[65px] sm:mb-[120px]">
@@ -15,8 +17,8 @@ export default function NotFound() {
           <span className="relative inline-block text-sm font-medium text-primary group active:text-primary-500 focus:outline-none focus:ring">
             <span className="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-primary group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
-            <span className="relative block px-8 py-3 bg-foreground text-white border border-current">
-              <Link href="/">Ir al inicio</Link>
+            <span className="relative block px-8 py-3 text-white border border-current">
+              <Link href={APP_ROUTES.HOME}>Ir al inicio</Link>
             </span>
           </span>
         </button>

@@ -7,6 +7,7 @@ import { Button } from "@nextui-org/button";
 import { NavbarItem } from "@nextui-org/navbar";
 
 import { useCartStore } from "@/context";
+import { APP_ROUTES } from "@/lib/constants";
 import { MdiCartOutline } from "@/lib/icons-name";
 
 export const Cart: React.FC = () => {
@@ -22,7 +23,7 @@ export const Cart: React.FC = () => {
       >
         <Button
           as={Link}
-          href="/cart"
+          href={APP_ROUTES.CART}
           isIconOnly
           variant="light"
           aria-label="cart"

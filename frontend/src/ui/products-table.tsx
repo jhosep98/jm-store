@@ -16,6 +16,7 @@ import {
 import { useCartStore } from "@/context";
 import { useGetProductDetails } from "@/hooks";
 import { MaterialSymbolsDeleteOutline, SiWalletLine } from "@/lib/icons-name";
+import { APP_ROUTES } from "@/lib/constants";
 
 interface ProductsTableModel {
   strapiHost: string;
@@ -50,7 +51,7 @@ export const ProductsTable: React.FC<ProductsTableModel> = ({ strapiHost }) => {
             variant="flat"
             color="primary"
             endContent={<SiWalletLine fontSize={20} />}
-            href="/checkout"
+            href={APP_ROUTES.CHECKOUT}
           >
             Ir a pagar
           </Button>

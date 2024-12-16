@@ -3,3 +3,12 @@ export const DEFAULT_NOTIFY_MESSAGES = {
   error_purchase: "Error al crear la compra",
   error_customer: "Error al crear el cliente",
 };
+
+export const APP_ROUTES = {
+  HOME: "/",
+  CATEGORIES: "/categories",
+  STORE: "/store",
+  CART: "/cart",
+  CHECKOUT: "/checkout",
+  FAVORITES: "/favorites",
+};
