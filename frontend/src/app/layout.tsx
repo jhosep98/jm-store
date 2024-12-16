@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { MainFooter, MainNavbar } from "@/ui";
 import { AppProviders } from "@/context/app-provider";
+import { BannerFixed } from "@/components/banner-fixed";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,6 +29,7 @@ export default function RootLayout({
       >
         <AppProviders>
           <div className="flex flex-col min-h-screen">
+            <BannerFixed />
             <MainNavbar />
 
             <div className="flex-1">{children}</div>

@@ -16,7 +16,7 @@ export const MainNavbar: React.FC = () => (
   <Navbar
     isBordered
     maxWidth="lg"
-    className="[&>header]:px-4 [&>header]:justify-between [&>header]:items-center"
+    className="[&>header]:px-4 [&>header]:justify-between [&>header]:items-center top-[40px]"
   >
     <NavbarBrand>
       <Link href="/" aria-label="Home">
@@ -26,11 +26,15 @@ export const MainNavbar: React.FC = () => (
 
     <NavbarContent className="hidden sm:flex gap-4 flex-1" justify="center">
       <NavbarItem>
-        <Link href="#" className="hover:underline">Inicio</Link>
+        <Link href="/" className="hover:underline">Inicio</Link>
       </NavbarItem>
 
       <NavbarItem>
-        <Link href="#" className="hover:underline">Tienda</Link>
+        <Link href="/categories" className="hover:underline">Categorías</Link>
+      </NavbarItem>
+
+      <NavbarItem>
+        <Link href="/store" className="hover:underline">Tienda</Link>
       </NavbarItem>
     </NavbarContent>
 
