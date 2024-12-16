@@ -17,7 +17,11 @@ import { useCartStore } from "@/context";
 import { useGetProductDetails } from "@/hooks";
 import { MaterialSymbolsDeleteOutline, SiWalletLine } from "@/lib/icons-name";
 
-export const ProductsTable: React.FC = () => {
+interface ProductsTableModel {
+  strapiHost: string;
+}
+
+export const ProductsTable: React.FC<ProductsTableModel> = ({ strapiHost }) => {
   const { clearCart } = useCartStore((state) => state);
   const { totalPrice, uniqueProducts } = useGetProductDetails();
 
@@ -72,7 +76,7 @@ export const ProductsTable: React.FC = () => {
                     className="flex items-center gap-2"
                   >
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_HOST}/${item?.data?.images[3].url}`}
+                      src={`${strapiHost}/${item?.data?.images[3].url}`}
                       alt={item?.data?.productName ?? ""}
                       className="w-10 h-10 rounded-full"
                       width={100}

@@ -13,16 +13,18 @@ import { DEFAULT_NOTIFY_MESSAGES } from "@/lib/constants";
 import { CustomerFormData, CustomerScheme } from "@/types/customer-form";
 import { createCustomerMutation, createPurchaseMutation } from "@/providers";
 
-const strapiHost = process.env.NEXT_PUBLIC_STRAPI_HOST;
-
-const strapiToken = process.env.NEXT_PUBLIC_STRAPI_TOKEN;
-
 interface CheckoutFormModel {
   isSuccess: boolean;
   setIsSuccess: React.Dispatch<React.SetStateAction<boolean>>;
+  strapiHost: string;
+  strapiToken: string;
 }
 
-export const CheckoutForm: React.FC<CheckoutFormModel> = ({ setIsSuccess }) => {
+export const CheckoutForm: React.FC<CheckoutFormModel> = ({
+  setIsSuccess,
+  strapiHost,
+  strapiToken,
+}) => {
   const { clearCart } = useCartStore((state) => state);
   const { totalPrice, uniqueProducts } = useGetProductDetails();
 

@@ -5,7 +5,15 @@ import * as React from "react";
 import { BuySuccess } from "./buy-success";
 import { CheckoutForm, DetailsTable } from "@/ui";
 
-export const CheckoutContent: React.FC = () => {
+interface CheckoutContentModel {
+  strapiHost: string;
+  strapiToken: string;
+}
+
+export const CheckoutContent: React.FC<CheckoutContentModel> = ({
+  strapiHost,
+  strapiToken,
+}) => {
   const [isSuccess, setIsSuccess] = React.useState(false);
 
   if (isSuccess)
@@ -22,7 +30,12 @@ export const CheckoutContent: React.FC = () => {
       </div>
 
       <div className="rounded-xl p-6 col-span-1 bg-white">
-        <CheckoutForm isSuccess={isSuccess} setIsSuccess={setIsSuccess} />
+        <CheckoutForm
+          isSuccess={isSuccess}
+          setIsSuccess={setIsSuccess}
+          strapiHost={strapiHost}
+          strapiToken={strapiToken}
+        />
       </div>
     </div>
   );
