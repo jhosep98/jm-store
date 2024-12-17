@@ -28,7 +28,7 @@ export const ProductCard: React.FC<ProductCardModel> = ({
   );
 
   const {
-    data: { category, documentId, images, productName, stock, price },
+    data: { category, documentId, images, productName, stock, price, isNew },
   } = product;
 
   const photos = images.map((img) => ({
@@ -39,6 +39,8 @@ export const ProductCard: React.FC<ProductCardModel> = ({
   const isFavorite = favorites.find(
     (fav) => fav.data.documentId === documentId
   );
+
+  const priceWithDiscount = price - price * (20 / 100);
 
   return (
     <Card shadow="none" className="border-none rounded-none bg-transparent">
@@ -64,7 +66,7 @@ export const ProductCard: React.FC<ProductCardModel> = ({
       </Link>
 
       <Button
-        className="absolute top-2 right-2 z-20"
+        className="absolute top-2 right-2 z-10"
         isIconOnly
         radius="full"
         variant="light"
@@ -104,7 +106,7 @@ export const ProductCard: React.FC<ProductCardModel> = ({
                     style: "currency",
                     currency: "PEN",
                     minimumFractionDigits: 2,
-                  }).format(price + 25)}
+                  }).format(price)}
                 </span>
 
                 <p className="text-md font-semibold">
@@ -112,7 +114,7 @@ export const ProductCard: React.FC<ProductCardModel> = ({
                     style: "currency",
                     currency: "PEN",
                     minimumFractionDigits: 2,
-                  }).format(price)}
+                  }).format(isNew ? priceWithDiscount : price)}
                 </p>
               </div>
             </div>

@@ -17,7 +17,7 @@ export const MainNavbar: React.FC = () => (
   <Navbar
     isBordered
     maxWidth="lg"
-    className="[&>header]:px-4 [&>header]:justify-between [&>header]:items-center top-[40px]"
+    className="[&>header]:px-4 [&>header]:justify-between [&>header]:items-center top-[48px]"
   >
     <NavbarBrand>
       <Link href={APP_ROUTES.HOME} aria-label="Home">
