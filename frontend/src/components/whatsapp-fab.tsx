@@ -24,6 +24,7 @@ export const WhatsAppFab: React.FC = () => {
         <Button
           size="lg"
           isIconOnly
+          variant="light"
           as={Link}
           className="fixed bottom-4 right-4 rounded-full shadow-lg z-10 hover:bg-gray-50 focus:outline-none animate-bounce"
           aria-label="Whatsapp"

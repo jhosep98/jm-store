@@ -8,7 +8,7 @@ import { NavbarItem } from "@nextui-org/navbar";
 
 import { useCartStore } from "@/context";
 import { APP_ROUTES } from "@/lib/constants";
-import { MdiCartOutline } from "@/lib/icons-name";
+import { MdiLightCart } from "@/lib/icons-name";
 
 export const Cart: React.FC = () => {
   const { cart } = useCartStore((state) => state);
@@ -29,7 +29,7 @@ export const Cart: React.FC = () => {
           aria-label="cart"
           className="rounded-full"
         >
-          <MdiCartOutline className="text-foreground" />
+          <MdiLightCart className="text-foreground" />
         </Button>
       </Badge>
     </NavbarItem>
