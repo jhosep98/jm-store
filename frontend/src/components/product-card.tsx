@@ -1,21 +1,14 @@
-"use client";
-
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@nextui-org/button";
 import { Skeleton } from "@nextui-org/skeleton";
 import { Card, CardBody, CardFooter } from "@nextui-org/card";
 
-import { APIProduct } from "@/types";
-import { useFavoritesStore } from "@/context/favorites-store-provider";
-import {
-  MaterialSymbolsLightFavorite,
-  MaterialSymbolsLightFavoriteOutline,
-} from "@/lib/icons-name";
+import { Product } from "@/types";
+import { FavoriteButton } from "./favorite-button";
 
 interface ProductCardModel {
-  product: APIProduct;
+  product: Product;
   strapiHost: string;
 }
 
@@ -23,22 +16,13 @@ export const ProductCard: React.FC<ProductCardModel> = ({
   product,
   strapiHost,
 }) => {
-  const { addToFavorites, removeFromFavorites, favorites } = useFavoritesStore(
-    (state) => state
-  );
-
-  const {
-    data: { category, documentId, images, productName, stock, price, isNew },
-  } = product;
+  const { category, documentId, images, productName, stock, price, isNew } =
+    product;
 
   const photos = images.map((img) => ({
     url: `${strapiHost}/${img.url}`,
     name: img.name,
   }));
-
-  const isFavorite = favorites.find(
-    (fav) => fav.data.documentId === documentId
-  );
 
   const priceWithDiscount = price - price * (20 / 100);
 
@@ -65,34 +49,7 @@ export const ProductCard: React.FC<ProductCardModel> = ({
         )}
       </Link>
 
-      <Button
-        className="absolute top-2 right-2 z-10"
-        isIconOnly
-        radius="full"
-        variant="light"
-        size="sm"
-        onClick={(e) => {
-          e.stopPropagation();
-
-          if (isFavorite) {
-            removeFromFavorites(product);
-          } else {
-            addToFavorites(product);
-          }
-        }}
-      >
-        {isFavorite ? (
-          <MaterialSymbolsLightFavorite
-            className="text-red-500"
-            fontSize={24}
-          />
-        ) : (
-          <MaterialSymbolsLightFavoriteOutline
-            className="text-white"
-            fontSize={24}
-          />
-        )}
-      </Button>
+      <FavoriteButton product={product} />
 
       <Link href={`${category.slug}/${documentId}`}>
         <CardFooter className="flex justify-between items-end p-0 mt-3">

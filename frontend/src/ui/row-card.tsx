@@ -12,13 +12,15 @@ export default async function RowCard() {
   return (
     <section>
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {products.data.map((data) => (
-          <ProductCard
-            key={data.id}
-            product={{ data: { ...data }, meta: {} }}
-            strapiHost={STRAPI_HOST ?? ""}
-          />
-        ))}
+        {products.data.map((product) => {
+          return (
+            <ProductCard
+              key={product.id}
+              product={product}
+              strapiHost={STRAPI_HOST ?? ""}
+            />
+          );
+        })}
       </div>
     </section>
   );

@@ -4,7 +4,6 @@ import {
   Navbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
 } from "@nextui-org/navbar";
 
 import { Cart } from "@/components";
@@ -25,7 +24,7 @@ export const MainNavbar: React.FC = () => (
       </Link>
     </NavbarBrand>
 
-    <NavbarContent className="hidden sm:flex gap-4 flex-1" justify="center">
+    {/* <NavbarContent className="hidden sm:flex gap-4 flex-1" justify="center">
       <NavbarItem>
         <Link href={APP_ROUTES.HOME} className="hover:underline">
           Inicio
@@ -43,7 +42,7 @@ export const MainNavbar: React.FC = () => (
           Tienda
         </Link>
       </NavbarItem>
-    </NavbarContent>
+    </NavbarContent> */}
 
     <NavbarContent justify="end" className="w-fit">
       <FavoriteProducts />

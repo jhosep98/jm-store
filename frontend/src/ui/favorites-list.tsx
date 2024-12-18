@@ -27,7 +27,7 @@ export const FavoritesList: React.FC<FavoritesListModel> = ({ strapiHost }) => {
     <section className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 my-16 py-16">
       {favorites.map((fav) => (
         <ProductCard
-          key={fav.data.id}
+          key={fav.id}
           product={{ ...fav }}
           strapiHost={strapiHost ?? ""}
         />

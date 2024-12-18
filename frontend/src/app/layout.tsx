@@ -4,6 +4,7 @@ import "./globals.css";
 import { MainFooter, MainNavbar } from "@/ui";
 import { AppProviders } from "@/context/app-provider";
 import { BannerFixed } from "@/components/banner-fixed";
+import { WhatsAppFab } from "@/components/whatsapp-fab";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,13 +29,16 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AppProviders>
-          <div className="flex flex-col min-h-screen">
+          <div className="flex flex-col min-h-screen relative">
             <BannerFixed />
+
             <MainNavbar />
 
             <div className="flex-1">{children}</div>
 
             <MainFooter />
+            
+            <WhatsAppFab />
           </div>
         </AppProviders>
       </body>

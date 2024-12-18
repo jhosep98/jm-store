@@ -21,7 +21,7 @@ export const BannerFixed: React.FC = () => (
       loop
       className="container mx-auto max-w-screen-lg"
       autoplay={{
-        delay: 2500,
+        delay: 3000,
       }}
     >
       <SwiperSlide>

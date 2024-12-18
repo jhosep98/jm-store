@@ -1,9 +1,9 @@
 export interface APIProduct {
-  data: Data;
+  data: Product;
   meta: Record<string, string>;
 }
 
-export interface Data {
+export interface Product {
   id: number;
   documentId: string;
   productName: string;

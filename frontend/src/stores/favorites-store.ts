@@ -2,15 +2,15 @@
 
 import { createStore } from "zustand/vanilla";
 
-import { APIProduct } from "@/types";
+import { Product } from "@/types";
 
 export type FavoritesState = {
-  favorites: APIProduct[];
+  favorites: Product[];
 };
 
 export type FavoritesActions = {
-  addToFavorites: (product: APIProduct) => void;
-  removeFromFavorites: (product: APIProduct) => void;
+  addToFavorites: (product: Product) => void;
+  removeFromFavorites: (product: Product) => void;
   clearFavorites: () => void;
 };
 
@@ -29,7 +29,7 @@ export const defaultInitState: FavoritesState = {
 const LOCAL_STORAGE_KEY = "favorites_data";
 
 // Load favorites from localStorage
-const loadFavoritesFromLocalStorage = (): APIProduct[] => {
+const loadFavoritesFromLocalStorage = (): Product[] => {
   if (typeof window !== "undefined") {
     const storedFavorites = localStorage.getItem(LOCAL_STORAGE_KEY);
     return storedFavorites ? JSON.parse(storedFavorites) : [];
@@ -39,7 +39,7 @@ const loadFavoritesFromLocalStorage = (): APIProduct[] => {
 };
 
 // Save favorites to localStorage
-const saveFavoritesToLocalStorage = (favorites: APIProduct[]) => {
+const saveFavoritesToLocalStorage = (favorites: Product[]) => {
   if (typeof window !== "undefined") {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(favorites));
   }
@@ -62,7 +62,7 @@ export const createFavoritesStore = (
     removeFromFavorites: (item) => {
       set((state) => {
         const updatedFavorites = state.favorites.filter(
-          (favorite) => favorite.data.id !== item.data.id
+          (favorite) => favorite.id !== item.id
         );
         saveFavoritesToLocalStorage(updatedFavorites);
         return { favorites: updatedFavorites };
