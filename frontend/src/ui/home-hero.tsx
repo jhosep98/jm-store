@@ -21,22 +21,22 @@ const HomeHero: React.FC = async () => {
           </h1>
 
           <div className="[&>p>strong]:font-bold text-xl md:text-2xl mb-8 text-center">
-            <BlocksRenderer content={description as []} />	
+            <BlocksRenderer content={description as []} />
           </div>
 
-          <Link href="#new-releases">
-            <Button
-              radius="full"
-              size="lg"
-              variant="light"
-              color="default"
-              className="text-white animate-bounce"
-              isIconOnly
-              aria-label="New releases"
-            >
-              <MiChevronDown />
-            </Button>
-          </Link>
+          <Button
+            radius="full"
+            as={Link}
+            href="#new-releases"
+            size="lg"
+            variant="light"
+            color="default"
+            className="text-white animate-bounce"
+            isIconOnly
+            aria-label="New releases"
+          >
+            <MiChevronDown />
+          </Button>
         </div>
       </div>
     </SwiperHero>

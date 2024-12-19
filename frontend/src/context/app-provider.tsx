@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Toaster } from "sonner";
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
@@ -10,6 +11,23 @@ import { FavoritesStoreProvider } from "./favorites-store-provider";
 export function AppProviders({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setIsLoading(true);
+
+    if (typeof window !== "undefined") {
+      setIsLoading(false);
+    }
+  }, []);
+
+  if (isLoading)
+    return (
+      <CartStoreProvider>
+        <FavoritesStoreProvider>{children}</FavoritesStoreProvider>
+      </CartStoreProvider>
+    );
+
   return (
     <CartStoreProvider>
       <FavoritesStoreProvider>

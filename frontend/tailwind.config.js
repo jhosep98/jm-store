@@ -37,6 +37,11 @@ export const plugins = [
           divider: "#f6f7fd",
         },
       },
+      dark: {
+        colors: {
+          divider: "#1e1e1e",
+        },
+      }
     },
   }),
 ];

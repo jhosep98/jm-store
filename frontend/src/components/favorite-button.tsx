@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { Button } from "@nextui-org/button";
+import { Skeleton } from "@nextui-org/skeleton";
 
 import { Product } from "@/types";
 import { useFavoritesStore } from "@/context/favorites-store-provider";
@@ -15,20 +16,31 @@ interface FavoriteButtonModel {
 }
 
 export const FavoriteButton: React.FC<FavoriteButtonModel> = ({ product }) => {
-  const { addToFavorites, removeFromFavorites, favorites } = useFavoritesStore(
-    (state) => state
+  const { addToFavorites, removeFromFavorites, validateFavorite } =
+    useFavoritesStore((state) => state);
+
+  const [mounted, setMounted] = React.useState(false);
+
+  const isFavorite = validateFavorite(product);
+
+  const onClick = React.useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+
+      if (isFavorite) {
+        removeFromFavorites(product);
+      } else {
+        addToFavorites(product);
+      }
+    },
+    [isFavorite]
   );
-  const [isFavorite, setIsFavorite] = React.useState(false);
 
   React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      const isFavorite = favorites.some(
-        (fav) => fav.documentId === product.documentId
-      );
+    setMounted(true);
+  }, []);
 
-      setIsFavorite(isFavorite);
-    }
-  }, [favorites, product, window]);
+  if (!mounted) return <Skeleton className="flex rounded-full w-6 h-6" />;
 
   return (
     <Button
@@ -37,25 +49,20 @@ export const FavoriteButton: React.FC<FavoriteButtonModel> = ({ product }) => {
       radius="full"
       variant="light"
       size="sm"
-      onClick={(e) => {
-        e.stopPropagation();
-
-        if (isFavorite) {
-          removeFromFavorites(product);
-        } else {
-          addToFavorites(product);
-        }
-      }}
+      aria-label="Favorite"
+      onClick={onClick}
     >
-      {isFavorite ? (
-        <MaterialSymbolsLightFavorite
-          className="text-red-500"
-          fontSize={24}
-          key="MaterialSymbolsLightFavorite"
-        />
-      ) : (
+      {!isFavorite && (
         <MaterialSymbolsLightFavoriteOutline
           className="text-white"
+          fontSize={24}
+          key="MaterialSymbolsLightFavoriteOutline"
+        />
+      )}
+
+      {isFavorite && (
+        <MaterialSymbolsLightFavorite
+          className="text-red-500"
           fontSize={24}
           key="MaterialSymbolsLightFavoriteOutline"
         />

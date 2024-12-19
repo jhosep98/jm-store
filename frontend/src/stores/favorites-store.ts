@@ -12,6 +12,7 @@ export type FavoritesActions = {
   addToFavorites: (product: Product) => void;
   removeFromFavorites: (product: Product) => void;
   clearFavorites: () => void;
+  validateFavorite: (product: Product) => boolean;
 };
 
 export type FavoritesStore = FavoritesState & FavoritesActions;
@@ -50,6 +51,13 @@ export const createFavoritesStore = (
 ) => {
   return createStore<FavoritesStore>()((set) => ({
     ...initState,
+    validateFavorite: (item) => {
+      const isFavorite = loadFavoritesFromLocalStorage().some(
+        (fav) => fav.id === item.id
+      );
+
+      return isFavorite;
+    },
 
     addToFavorites: (item) => {
       set((state) => {

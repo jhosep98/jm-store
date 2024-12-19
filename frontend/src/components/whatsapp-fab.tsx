@@ -28,8 +28,8 @@ export const WhatsAppFab: React.FC = () => {
             variant="light"
             as={Link}
             className="rounded-full shadow-lg hover:bg-gray-50 focus:outline-none animate-bounce"
-            aria-label="Whatsapp"
             target="_blank"
+            aria-label="contáctanos por Whatsapp"
             href="https://api.whatsapp.com/send?phone=51907931948&text=Hola,%20deseo%20hacer%20una%20consulta.%20%C2%BFPodr%C3%ADas%20ayudarme%3F"
           >
             <MdiWhatsapp color="#25d366" width={28} height={28} />

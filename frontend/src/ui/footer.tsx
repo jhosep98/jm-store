@@ -2,7 +2,6 @@ import * as React from "react";
 import Link from "next/link";
 import { Divider } from "@nextui-org/divider";
 
-import { WhatsAppFab } from "@/components/whatsapp-fab";
 import { JmStoreLogo, MdiFacebook, MdiInstagram } from "@/lib/icons-name";
 
 export const MainFooter: React.FC = () => (
