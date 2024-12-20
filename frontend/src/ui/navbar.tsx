@@ -1,10 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-} from "@nextui-org/navbar";
+import { Navbar, NavbarBrand, NavbarContent } from "@nextui-org/navbar";
 
 import { Cart } from "@/components";
 import { APP_ROUTES } from "@/lib/constants";
@@ -16,7 +12,8 @@ export const MainNavbar: React.FC = () => (
   <Navbar
     isBordered
     maxWidth="lg"
-    className="[&>header]:px-4 [&>header]:justify-between [&>header]:items-center top-[48px]"
+    className="[&>header]:px-4 [&>header]:justify-between [&>header]:items-center top-0"
+    shouldHideOnScroll
   >
     <NavbarBrand>
       <Link href={APP_ROUTES.HOME} aria-label="Home">

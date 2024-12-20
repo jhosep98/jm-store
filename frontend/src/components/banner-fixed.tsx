@@ -14,61 +14,87 @@ import {
 } from "@/lib/icons-name";
 
 export const BannerFixed: React.FC = () => (
-  <div className="py-3 px-4 text-white bg-black sticky top-0 z-20 border-b border-divider">
+  <div className="py-3 px-4 bg-content1 top-0 z-20 border-b border-divider">
     <Swiper
-      modules={[Autoplay]}
-      slidesPerView="auto"
+      className="flex items-center container max-w-screen-lg mx-auto px-4"
+      spaceBetween={10}
       loop
-      className="container mx-auto max-w-screen-lg"
       autoplay={{
         delay: 3000,
+        disableOnInteraction: false,
       }}
+      slidesPerView={1}
+      breakpoints={{
+        0: {
+          slidesPerView: 2,
+        },
+        640: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        1024: {
+          slidesPerView: 4,
+        },
+      }}
+      modules={[Autoplay]}
     >
       <SwiperSlide>
-        <div className="flex items-center justify-center gap-20">
-          <div className="flex items-center">
-            <SolarSaleOutline className="mr-2" />
-            <p>Descuento 20%</p>
-          </div>
-
-          <div className="flex items-center">
-            <HugeiconsCustomerSupport className="mr-2" />
-            <p>Soporte 24/7</p>
-          </div>
-
-          <div className="flex items-center">
-            <MdiSecureOutline className="mr-2" />
-            <p>Pago 100% seguro</p>
-          </div>
-
-          <div className="flex items-center">
-            <SolarDeliveryOutline className="mr-2" />
-            <p>Envío gratuito</p>
-          </div>
+        <div className="flex justify-center items-center">
+          <SolarSaleOutline className="mr-2" />
+          <p>Descuento 20%</p>
         </div>
       </SwiperSlide>
 
       <SwiperSlide>
-        <div className="flex items-center justify-center gap-20">
-          <div className="flex items-center">
-            <SolarSaleOutline className="mr-2" />
-            <p>Descuento 20%</p>
-          </div>
+        <div className="flex justify-center items-center">
+          <HugeiconsCustomerSupport className="mr-2" />
+          <p>Soporte 24/7</p>
+        </div>
+      </SwiperSlide>
 
-          <div className="flex items-center">
-            <HugeiconsCustomerSupport className="mr-2" />
-            <p>Soporte 24/7</p>
-          </div>
+      <SwiperSlide>
+        <div className="flex justify-center items-center">
+          <MdiSecureOutline className="mr-2" />
+          <p>Pago 100% seguro</p>
+        </div>
+      </SwiperSlide>
 
-          <div className="flex items-center">
-            <MdiSecureOutline className="mr-2" />
-            <p>Pago 100% seguro</p>
-          </div>
+      <SwiperSlide>
+        <div className="flex justify-center items-center">
+          <SolarDeliveryOutline className="mr-2" />
+          <p>Envío gratuito</p>
+        </div>
+      </SwiperSlide>
 
-          <div className="flex items-center">
-            <SolarDeliveryOutline className="mr-2" />
-            <p>Envío gratuito</p>
-          </div>
+      {/* COPY */}
+
+       <SwiperSlide>
+        <div className="flex justify-center items-center">
+          <SolarSaleOutline className="mr-2" />
+          <p>Descuento 20%</p>
+        </div>
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <div className="flex justify-center items-center">
+          <HugeiconsCustomerSupport className="mr-2" />
+          <p>Soporte 24/7</p>
+        </div>
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <div className="flex justify-center items-center">
+          <MdiSecureOutline className="mr-2" />
+          <p>Pago 100% seguro</p>
+        </div>
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <div className="flex justify-center items-center">
+          <SolarDeliveryOutline className="mr-2" />
+          <p>Envío gratuito</p>
         </div>
       </SwiperSlide>
     </Swiper>

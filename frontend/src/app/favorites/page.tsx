@@ -6,7 +6,7 @@ export default function FavoritesPage() {
   return (
     <main className="max-w-screen-lg container mx-auto px-4">
       <div className="pt-[1.5rem]">
-        <div className="min-h-[40vh] flex justify-center items-center bg-slate-50 dark:bg-slate-900">
+        <div className="min-h-[40vh] flex justify-center items-center bg-content1">
           <h1 className="text-3xl font-bold">Tus favoritos</h1>
         </div>
       </div>

@@ -34,14 +34,20 @@ export const plugins = [
     themes: {
       light: {
         colors: {
-          divider: "#f6f7fd",
+          divider: "#f4f7fd",
+          background: "#ffffff",
+          content1: "#f6f7fd",
+          foreground: "#353E6C",
         },
       },
       dark: {
         colors: {
-          divider: "#1e1e1e",
+          divider: "#2C2C2E",
+          background: "#0D0F1F",
+          content1: "#26262E",
+          foreground: "#fff",
         },
-      }
+      },
     },
   }),
 ];

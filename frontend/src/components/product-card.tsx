@@ -27,18 +27,22 @@ export const ProductCard: React.FC<ProductCardModel> = ({
   const priceWithDiscount = price - price * (20 / 100);
 
   return (
-    <Card shadow="none" className="border-none rounded-none bg-transparent">
+    <Card
+      shadow="none"
+      className="border-none rounded-none bg-transparent flex flex-col gap-y-2"
+    >
       <Link href={`${category.slug}/${documentId}`}>
         {photos.length > 0 ? (
-          <CardBody className="p-0">
-            <div className="relative min-h-96 overflow-hidden inline-block">
+          <CardBody className="relative rounded-lg overflow-hidden h-[280px] p-0">
+            <div className="absolute top-0 left-0 h-full w-full z-[1]">
               <Image
                 alt={photos[2].name}
-                className="object-cover rounded-sm min-h-96"
                 src={photos[2].url}
                 priority
-                sizes="(max-width: 768px) 100vw, 768px"
-                fill
+                width="900"
+                height="1125"
+                className="lazy-image h-full w-full object-cover is-loaded"
+                sizes="(max-width: 1024px) 100vw, (max-width: 1920px) 25vw, 420px"
               />
             </div>
           </CardBody>
@@ -52,13 +56,13 @@ export const ProductCard: React.FC<ProductCardModel> = ({
       <FavoriteButton product={product} />
 
       <Link href={`${category.slug}/${documentId}`}>
-        <CardFooter className="flex justify-between items-end p-0 mt-3">
+        <CardFooter className="flex justify-between items-end p-0">
           <div className="flex-col items-start">
             <h3 className="text-xl font-light mb-2">{productName}</h3>
 
             <div className="flex justify-between items-center w-full">
               <div className="flex items-center gap-2">
-                <span className="line-through text-md text-gray-500">
+                <span className="line-through text-sm text-gray-500">
                   {new Intl.NumberFormat("es-ES", {
                     style: "currency",
                     currency: "PEN",
@@ -66,7 +70,7 @@ export const ProductCard: React.FC<ProductCardModel> = ({
                   }).format(price)}
                 </span>
 
-                <p className="text-md font-semibold">
+                <p className="text-sm font-semibold">
                   {new Intl.NumberFormat("es-ES", {
                     style: "currency",
                     currency: "PEN",

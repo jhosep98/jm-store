@@ -38,3 +38,14 @@ section,
 article {
   container-type: inline-size;
 }
+
+.swiper {
+  display: flex;
+  align-items: center;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

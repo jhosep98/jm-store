@@ -11,6 +11,13 @@ interface FavoritesListModel {
 
 export const FavoritesList: React.FC<FavoritesListModel> = ({ strapiHost }) => {
   const { favorites } = useFavoritesStore((state) => state);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   if (favorites.length === 0) {
     return (
