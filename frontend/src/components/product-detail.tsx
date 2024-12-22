@@ -20,10 +20,10 @@ export const ProductDetail: React.FC<APIProduct> = (product) => {
           }).format(data.price)}
         </p>
 
-        <AddProductButton product={product} />
+        <AddProductButton product={data} />
       </div>
 
-      <div className="[&>p>strong]:font-bold [&>p]:mb-2 [&>ul]:list-disc [&>ul]:mb-2 [&>ul]:pl-8  text-gray-600">
+      <div className="[&>p>strong]:font-bold [&>p]:mb-2 [&>ul]:list-disc [&>ul]:mb-2 [&>ul]:pl-8  text-gray-600 dark:text-white">
         <BlocksRenderer content={data.description as []} />
       </div>
     </div>

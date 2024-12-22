@@ -38,12 +38,12 @@ export const DetailsTable: React.FC = () => {
 
         <TableBody>
           {uniqueProducts.map((item) => {
-            const total = item.quantity * (item?.data?.price ?? 0);
+            const total = item.quantity * (item?.price ?? 0);
 
             return (
-              <TableRow key={item.data?.documentId}>
+              <TableRow key={item?.documentId}>
                 <TableCell>
-                  <span className="text-medium">{item.data?.productName}</span>
+                  <span className="text-medium">{item?.productName}</span>
                 </TableCell>
 
                 <TableCell>

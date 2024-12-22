@@ -60,8 +60,8 @@ export const createFavoritesStore = (
     },
 
     addToFavorites: (item) => {
-      set((state) => {
-        const updatedFavorites = [...state.favorites, item];
+      set(() => {
+        const updatedFavorites = [item];
         saveFavoritesToLocalStorage(updatedFavorites);
         return { favorites: updatedFavorites };
       });

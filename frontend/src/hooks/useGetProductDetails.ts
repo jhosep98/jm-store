@@ -2,26 +2,24 @@
 
 import * as React from "react";
 
-import { APIProduct } from "@/types";
+import { Product } from "@/types";
 import { useCartStore } from "@/context";
 
 export const useGetProductDetails = () => {
   const { cart } = useCartStore((state) => state);
 
-  const removeRepeatedProducts = React.useCallback((products: APIProduct[]) => {
+  const removeRepeatedProducts = React.useCallback((products: Product[]) => {
     const countProduct = (id: number) => {
-      return products.filter((product) => product.data.id === id).length;
+      return products.filter((product) => product.id === id).length;
     };
 
-    const uniqueProducts = [
-      ...new Set(products.map((product) => product.data.id)),
-    ];
+    const uniqueProducts = [...new Set(products.map((product) => product.id))];
 
     return uniqueProducts.map((id) => {
       const count = countProduct(id);
 
       return {
-        ...products.find((product) => product.data.id === id),
+        ...products.find((product) => product.id === id),
         quantity: count,
       };
     });
@@ -30,9 +28,9 @@ export const useGetProductDetails = () => {
   const uniqueProducts = removeRepeatedProducts(cart);
 
   const totalPrice = uniqueProducts.reduce((acc, item) => {
-    if (!item.data?.price) return acc;
+    if (!item?.price) return acc;
 
-    const total = item.quantity * item.data?.price;
+    const total = item.quantity * item?.price;
     return acc + total;
   }, 0);
 

@@ -342,7 +342,7 @@ export default function Error({
             <span className="relative inline-block text-sm font-medium text-primary group active:text-primary-500 focus:outline-none focus:ring">
               <span className="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-primary group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
-              <span className="relative block px-8 py-3 bg-foreground text-white border border-current">
+              <span className="relative block px-8 py-3 bg-foreground dark:bg-content1 text-white border border-current">
                 reset
               </span>
             </span>

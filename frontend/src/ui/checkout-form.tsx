@@ -68,8 +68,8 @@ export const CheckoutForm: React.FC<CheckoutFormModel> = ({
       const purchasePromises = uniqueProducts.map((product) =>
         createPurchaseMutation(
           {
-            price: product.data?.price ?? 0,
-            product: product.data?.productName ?? "",
+            price: product?.price ?? 0,
+            product: product?.productName ?? "",
             quantity: product.quantity,
             totalPrice: +totalPrice,
             customerId: {

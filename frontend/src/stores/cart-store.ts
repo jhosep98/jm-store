@@ -2,15 +2,15 @@
 
 import { createStore } from "zustand/vanilla";
 
-import { APIProduct } from "@/types";
+import { Product } from "@/types";
 
 export type CartState = {
-  cart: APIProduct[];
+  cart: Product[];
 };
 
 export type CartActions = {
-  addToCart: (product: APIProduct) => void;
-  removeFromCart: (product: APIProduct) => void;
+  addToCart: (product: Product) => void;
+  removeFromCart: (product: Product) => void;
   clearCart: () => void;
 };
 
@@ -29,7 +29,7 @@ export const defaultInitState: CartState = {
 const LOCAL_STORAGE_KEY = "cart_data";
 
 // Load cart from localStorage
-const loadCartFromLocalStorage = (): APIProduct[] => {
+const loadCartFromLocalStorage = (): Product[] => {
   if (typeof window !== "undefined") {
     const storedCart = localStorage.getItem(LOCAL_STORAGE_KEY);
     return storedCart ? JSON.parse(storedCart) : [];
@@ -39,7 +39,7 @@ const loadCartFromLocalStorage = (): APIProduct[] => {
 };
 
 // Save cart to localStorage
-const saveCartToLocalStorage = (cart: APIProduct[]) => {
+const saveCartToLocalStorage = (cart: Product[]) => {
   if (typeof window !== "undefined") {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cart));
   }
@@ -62,7 +62,7 @@ export const createCartStore = (
     removeFromCart: (item) => {
       set((state) => {
         const updatedCart = state.cart.filter(
-          (cartItem) => cartItem.data.id !== item.data.id
+          (cartItem) => cartItem.id !== item.id
         );
         saveCartToLocalStorage(updatedCart);
         return { cart: updatedCart };

@@ -29,11 +29,11 @@ export const ProductCard: React.FC<ProductCardModel> = ({
   return (
     <Card
       shadow="none"
-      className="border-none rounded-none bg-transparent flex flex-col gap-y-2"
+      className="border-none rounded-none bg-transparent flex flex-col gap-y-3"
     >
       <Link href={`${category.slug}/${documentId}`}>
         {photos.length > 0 ? (
-          <CardBody className="relative rounded-lg overflow-hidden h-[280px] p-0">
+          <CardBody className="relative rounded-sm overflow-hidden h-[320px] p-0">
             <div className="absolute top-0 left-0 h-full w-full z-[1]">
               <Image
                 alt={photos[2].name}

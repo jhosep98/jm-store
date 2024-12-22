@@ -3,12 +3,12 @@
 import * as React from "react";
 import { Button } from "@nextui-org/button";
 
-import { APIProduct } from "@/types";
 import { useCartStore } from "@/context";
+import { APIProduct, Product } from "@/types";
 import { LetsIconsAddRound } from "@/lib/icons-name";
 
 interface AddProductButtonModel {
-  product: APIProduct;
+  product: Product;
 }
 
 export const AddProductButton: React.FC<AddProductButtonModel> = ({
@@ -17,7 +17,7 @@ export const AddProductButton: React.FC<AddProductButtonModel> = ({
   const { addToCart, cart } = useCartStore((state) => state);
 
   const handleAddToCart = () => {
-    if (cart.length < product.data.stock) {
+    if (cart.length < product.stock) {
       addToCart(product);
     }
   };
@@ -27,7 +27,7 @@ export const AddProductButton: React.FC<AddProductButtonModel> = ({
       variant="solid"
       color="primary"
       onClick={handleAddToCart}
-      disabled={product.data.stock === 0}
+      disabled={product.stock === 0}
       endContent={<LetsIconsAddRound fontSize={20} />}
     >
       Añadir al carrito

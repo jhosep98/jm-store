@@ -14,9 +14,9 @@ import {
 } from "@nextui-org/table";
 
 import { useCartStore } from "@/context";
+import { APP_ROUTES } from "@/lib/constants";
 import { useGetProductDetails } from "@/hooks";
 import { MaterialSymbolsDeleteOutline, SiWalletLine } from "@/lib/icons-name";
-import { APP_ROUTES } from "@/lib/constants";
 
 interface ProductsTableModel {
   strapiHost: string;
@@ -67,25 +67,25 @@ export const ProductsTable: React.FC<ProductsTableModel> = ({ strapiHost }) => {
 
         <TableBody>
           {uniqueProducts.map((item) => {
-            const total = item.quantity * (item?.data?.price ?? 0);
+            const total = item.quantity * (item?.price ?? 0);
 
             return (
-              <TableRow key={item?.data?.documentId}>
+              <TableRow key={item?.documentId}>
                 <TableCell>
                   <Link
-                    href={`/${item?.data?.category.slug}/${item?.data?.slug}`}
+                    href={`/${item?.category?.slug}/${item?.slug}`}
                     className="flex items-center gap-2"
                   >
                     <Image
-                      src={`${strapiHost}/${item?.data?.images[3].url}`}
-                      alt={item?.data?.productName ?? ""}
+                      src={`${strapiHost}/${item?.images?.[3].url}`}
+                      alt={item?.productName ?? ""}
                       className="w-10 h-10 rounded-full"
                       width={100}
                       height={100}
                     />
 
                     <span className="text-medium">
-                      {item?.data?.productName}
+                      {item?.productName}
                     </span>
                   </Link>
                 </TableCell>
