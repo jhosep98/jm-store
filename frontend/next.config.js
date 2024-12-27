@@ -8,6 +8,7 @@ const nextConfig = {
       { hostname: "images.unsplash.com" },
       { hostname: "picsum.photos" },
       { hostname: "localhost" },
+      { hostname: "jm-store.onrender.com" },
     ],
   },
 };
